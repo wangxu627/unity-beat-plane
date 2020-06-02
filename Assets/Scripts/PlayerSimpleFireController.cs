@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerSimpleFireController : MonoBehaviour
 {
@@ -24,7 +25,12 @@ public class PlayerSimpleFireController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(this.fireMode == FireMode.Hold)
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
+        }
+
+        if (this.fireMode == FireMode.Hold)
         {
             this.toFireLeft -= Time.deltaTime;
             if (Input.GetButton("Fire1") && this.toFireLeft < 0)
@@ -32,15 +38,15 @@ public class PlayerSimpleFireController : MonoBehaviour
                 Fire();
                 this.toFireLeft = this.fireSpeed;
             }
-        } 
-        else if(this.fireMode == FireMode.Click)
+        }
+        else if (this.fireMode == FireMode.Click)
         {
             if (Input.GetButtonDown("Fire1"))
             {
                 Fire();
             }
         }
-        
+
     }
 
     private void Fire()

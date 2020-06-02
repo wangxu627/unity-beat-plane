@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5598971048961526401}
   - component: {fileID: 3913060681945367935}
   - component: {fileID: 2091916846520596245}
+  - component: {fileID: 4993672622750925524}
   m_Layer: 9
   m_Name: Enemy1Circle6Ways
   m_TagString: Enemy
@@ -74,12 +75,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5598971048961526650}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: efa9e38506742d6479ee2dbcb890f900, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemyType: 1
+  dieParticlePrefab: {fileID: 5273407927567983555, guid: 53161eed649fdba4a991dbd5fb583516,
+    type: 3}
   allBetweenDelay: 0.4
   allAutoReleaseTime: 4
 --- !u!114 &3913060681945367935
@@ -114,6 +117,29 @@ MonoBehaviour:
   maxMoveDistance: 200
   moveState: 0
   showParticle: {fileID: 4443442677929011079}
+--- !u!114 &4993672622750925524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5598971048961526650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09c7512c9be8fa34bbf80b1ea2a97f1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Model: {fileID: 0}
+  CurrentHealth: 0
+  Invulnerable: 0
+  InitialHealth: 10
+  MaximumHealth: 100
+  DestroyOnDeath: 1
+  DelayBeforeDestruction: 0
+  PointsWhenDestroyed: 0
+  RespawnAtInitialLocation: 0
+  DisableModelOnDeath: 1
+  DisableCollisionsOnDeath: 1
 --- !u!1 &5598971049365980720
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,6 +249,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -235,8 +262,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190335
+  m_fontColor: {r: 1, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

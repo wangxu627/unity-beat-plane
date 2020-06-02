@@ -317,3 +317,9 @@ C:\WXGames\BeatPlane\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache
 C:\WXGames\BeatPlane\obj\Debug\Assembly-CSharp.csproj.CopyComplete
 C:\WXGames\BeatPlane\obj\Debug\Assembly-CSharp.dll
 C:\WXGames\BeatPlane\obj\Debug\Assembly-CSharp.pdb
+C:\WXGames\BeatPlane\Temp\bin\Debug\DOTween.dll
+C:\WXGames\BeatPlane\Temp\bin\Debug\Unity.2D.Sprite.Editor.dll
+C:\WXGames\BeatPlane\Temp\bin\Debug\Unity.2D.Tilemap.Editor.dll
+C:\WXGames\BeatPlane\Temp\bin\Debug\Unity.2D.Sprite.Editor.pdb
+C:\WXGames\BeatPlane\Temp\bin\Debug\Unity.2D.Tilemap.Editor.pdb
+C:\WXGames\BeatPlane\Temp\bin\Debug\DOTween.xml

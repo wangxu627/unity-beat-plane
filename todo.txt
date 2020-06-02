@@ -1,0 +1,7 @@
+1.enemy enter pattern
+2.enemy enter red particle
+3.player explosion 2 particle
+4.player detection for explosion
+5.text shake
+6.bullet explosion improvement
+7.background animation

@@ -128,4 +128,26 @@ public class UbhObjectPool : UbhSingletonMonoBehavior<UbhObjectPool>
         return cnt;
 #endif
     }
+
+    public void DisableAllObjects()
+    {
+#if USING_CORE_GAME_KIT
+        var bullets = GetComponentsInChildren<UbhBullet>();
+        foreach (var item in bullets)
+        {
+            item.SetActive(false);
+        }
+#else
+        for (int i = 0; i < _PooledKeyList.Count; i++) {
+            int key = _PooledKeyList[i];
+            var goList = _PooledGoDic[key];
+            for (int j = 0; j < goList.Count; j++) {
+                var go = goList[j];
+                if (go != null) {
+                    go.SetActive(false);
+                }
+            }
+        }
+#endif
+    }
 }

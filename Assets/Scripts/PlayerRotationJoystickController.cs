@@ -6,12 +6,10 @@ using UnityEngine;
 public class PlayerRotationJoystickController : MonoBehaviour
 {
     public float rotationSpeed = 15.0f;
-    private PlayerMoveController.ControllerType controllerType;
+    
     void Start() {
-        PlayerMoveController c = GetComponent<PlayerMoveController>();
-        controllerType = c.controllerType;
-        if(controllerType != PlayerMoveController.ControllerType.Joystick &&
-           controllerType != PlayerMoveController.ControllerType.VirtualJoystick)
+        if(InputManager.Instance.controllerType != InputManager.ControllerType.Joystick &&
+           InputManager.Instance.controllerType != InputManager.ControllerType.VirtualJoystick)
         {
             Destroy(this);
         }
@@ -20,17 +18,17 @@ public class PlayerRotationJoystickController : MonoBehaviour
     void Update()
     {
         float xInput = 0, yInput = 0; 
-        if(controllerType == PlayerMoveController.ControllerType.Joystick)
+        if(InputManager.Instance.controllerType == InputManager.ControllerType.Joystick)
         {
             xInput = Input.GetAxis("RightHorizontal");
             yInput = Input.GetAxis("RightVertical");
         }
-        else if(controllerType == PlayerMoveController.ControllerType.VirtualJoystick)
+        else if(InputManager.Instance.controllerType == InputManager.ControllerType.VirtualJoystick)
         {
             xInput = ETCInput.GetAxis("RightHorizontal");
 		    yInput = ETCInput.GetAxis("RightVertical");
         }
-        Debug.Log("xxxxxxx xxxxxxxxxxxxxxxxxxx: " + xInput + "   :   " + yInput + "         " + controllerType);
+        Debug.Log("xxxxxxx xxxxxxxxxxxxxxxxxxx: " + xInput + "   :   " + yInput + "         " + InputManager.Instance.controllerType);
         if(xInput != 0 || yInput != 0)
         {
             Debug.Log("=================xxxxxxx : " + xInput + "   :   " + yInput);

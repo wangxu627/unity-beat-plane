@@ -12,12 +12,6 @@ public class RestrainPositionInScreen : MonoBehaviour
         this.cam = Camera.main;
     }
 
-    // Update is called once per frame
-    //void Update()
-    //{
-    //    this.transform.position = this.GetRestrainedPosition(this.transform.position);
-    //}
-
     public Vector3 GetRestrainedPosition(Vector3 worldPosition)
     {
         Vector3 screenPosition = this.cam.WorldToScreenPoint(worldPosition);

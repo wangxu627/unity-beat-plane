@@ -1,10 +1,16 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 
 class Utils
 {
+    public static IEnumerator DelayCall(Action action, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        action();
+    }
     public static Transform FindChildByName(GameObject gameObject, string name)
     {
         foreach (Transform child in gameObject.transform)

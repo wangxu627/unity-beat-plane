@@ -56,7 +56,10 @@ public class RandomMoveController : MonoBehaviour
         Tween moveTween = transform.DOMove(position, enteringTime);
         yield return moveTween.WaitForCompletion();
         moveState = MoveState.RandomMoving;
-        showParticle.Play();
+        if(showParticle)
+        {
+            showParticle.Play();
+        }
         if(enemyMoveType == EnemyMoveType.EnemyLittle)
         {
             position = GetRandomScreenPositionBasedAngle();

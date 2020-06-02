@@ -13,12 +13,14 @@ public class EnemyController : MonoBehaviour
         EnemyLevel3
     };
     public EnemyType enemyType;
+    public GameObject dieParticlePrefab;
     public float allBetweenDelay = 0.4f;
     public float allAutoReleaseTime = 4.0f;
     private Transform nameText;
     private TextMeshPro textMeshPro;
     private bool colliderAdded = false;
     private MeshRenderer textmeshproRenderer;
+    
 
     // Start is called before the first frame update
     void Awake()
@@ -35,6 +37,13 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    void Start() {
+        Health health = GetComponent<Health>();
+        if(health)
+        {
+            health.OnDeath += OnDeath;
+        }
+    }
     // Update is called once per frame
     void Update()
     {
@@ -61,5 +70,18 @@ public class EnemyController : MonoBehaviour
     public void SetDisplayName(string name)
     {
         textMeshPro.text = name;
+    }
+
+    public void SetDisplayColor(Color color)
+    {
+        textMeshPro.color = color;
+    }
+
+    private void OnDeath()
+    {
+        if(dieParticlePrefab)
+        {
+            Instantiate(dieParticlePrefab, this.gameObject.transform.position, Quaternion.identity);
+        }
     }
 }

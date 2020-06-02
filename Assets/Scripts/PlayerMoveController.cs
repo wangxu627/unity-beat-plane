@@ -4,13 +4,6 @@ using UnityEngine;
 
 public class PlayerMoveController : MonoBehaviour
 {
-    public enum ControllerType {
-        Mouse,
-        Joystick,
-        VirtualJoystick
-    }
-
-    public ControllerType controllerType;
     public float moveSpeed = 10;
 
     private RestrainPositionInScreen restain;
@@ -19,17 +12,17 @@ public class PlayerMoveController : MonoBehaviour
     {
         this.restain = GetComponent<RestrainPositionInScreen>();
     }
-
     // Update is called once per frame
     void Update()
     {
         float xInput = 0, yInput = 0;
-        if(controllerType == ControllerType.Mouse || controllerType == ControllerType.Joystick)
+        if(InputManager.Instance.controllerType == InputManager.ControllerType.Mouse || 
+           InputManager.Instance.controllerType == InputManager.ControllerType.Joystick)
         {
             xInput = Input.GetAxis("Horizontal");
             yInput = Input.GetAxis("Vertical");
         }
-        else if(controllerType == ControllerType.VirtualJoystick)
+        else if(InputManager.Instance.controllerType == InputManager.ControllerType.VirtualJoystick)
         {
             xInput = ETCInput.GetAxis("Horizontal");
 		    yInput = ETCInput.GetAxis("Vertical");
@@ -44,7 +37,13 @@ public class PlayerMoveController : MonoBehaviour
         Vector3 newPosition = new Vector3(this.transform.position.x + xMovement,
                                         this.transform.position.y + yMovement,
                                         this.transform.position.z);
-        this.transform.position = this.restain.GetRestrainedPosition(newPosition);
-        //this.transform.Translate(new Vector3(xInput, yInput, 0) * this.moveSpeed * Time.deltaTime, Space.World);
+        if(this.restain.enabled)
+        {
+            this.transform.position = this.restain.GetRestrainedPosition(newPosition);
+        }
+        else
+        {
+            this.transform.position = newPosition;
+        }
     }
 }

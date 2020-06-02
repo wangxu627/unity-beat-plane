@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3403260493567300713}
   - component: {fileID: 1483054533459828330}
   - component: {fileID: 6980399045708258268}
+  - component: {fileID: 5780707894029303770}
   m_Layer: 9
   m_Name: Enemy3Circle8Ways
   m_TagString: Enemy
@@ -80,6 +81,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efa9e38506742d6479ee2dbcb890f900, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyType: 3
+  dieParticlePrefab: {fileID: 5273407927567983555, guid: 53161eed649fdba4a991dbd5fb583516,
+    type: 3}
+  allBetweenDelay: 0.4
+  allAutoReleaseTime: 4
 --- !u!114 &1483054533459828330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105,9 +111,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d98b3c1c5934b04b847a4b08b995542, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyMoveType: 1
+  enteringTime: 2
   maxChangeDirTime: 0.688
   minMoveDistance: 100
   maxMoveDistance: 200
+  moveState: 0
+  showParticle: {fileID: 0}
+--- !u!114 &5780707894029303770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2715036630951073777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 09c7512c9be8fa34bbf80b1ea2a97f1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Model: {fileID: 0}
+  CurrentHealth: 0
+  Invulnerable: 0
+  InitialHealth: 10
+  MaximumHealth: 100
+  DestroyOnDeath: 1
+  DelayBeforeDestruction: 0
+  PointsWhenDestroyed: 0
+  RespawnAtInitialLocation: 0
+  DisableModelOnDeath: 1
+  DisableCollisionsOnDeath: 1
 --- !u!1 &8628281616148386937
 GameObject:
   m_ObjectHideFlags: 0
@@ -217,6 +250,7 @@ MonoBehaviour:
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
+  m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []

@@ -39,10 +39,12 @@ public class CollideDetecter : MonoBehaviour
         {
             GameObject realGameObject = other.gameObject.transform.parent.gameObject;
             Destroy(realGameObject);
+
+            GetComponent<Health>()?.Damage(1, 0);
         }
         else if(other.tag == "Player")
         {
-            other.gameObject.GetComponent<PlayerController>().Hit();
+            other.gameObject.GetComponent<Health>()?.Damage(1, 0);
         }
         this.gameObject.GetComponent<HitEffectController>().PlayHit();
         if(textShakeController) 
@@ -61,7 +63,7 @@ public class CollideDetecter : MonoBehaviour
         }
         else if(other.tag == "Player")
         {
-            other.gameObject.GetComponent<PlayerController>().Hit();
+            other.gameObject.GetComponent<Health>()?.Damage(1, 0);
         }
         RemoveSelf();
     }
@@ -70,7 +72,7 @@ public class CollideDetecter : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            other.gameObject.GetComponent<PlayerController>().Hit();
+            other.gameObject.GetComponent<Health>()?.Damage(1, 0);
             RemoveSelf();
         }
         else if(other.tag == "BulletClear")
