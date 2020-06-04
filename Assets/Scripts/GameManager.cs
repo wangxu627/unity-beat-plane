@@ -83,13 +83,15 @@ public class GameManager : Singleton<GameManager>
         "Emil"
     };
 
-    private Strategy strategy = new Strategy();
-
+    [Header("Debug Settings")]
+    public bool notLaunchEnemy = false;
     public int LittleEnemiesCount {get;set;}
     public int BigEnemiesCount {get;set;}
     public GameState currentGameState {get;set;}
     public bool PausedLaunch {get;set;}
     public int CurrentMessageIndex {get;set;}
+    
+    private Strategy strategy = new Strategy();
     protected override void Awake()
     {
         base.Awake();
@@ -197,6 +199,11 @@ public class GameManager : Singleton<GameManager>
     }
     public void StartToLaunchEnemy()
     {
+        if(notLaunchEnemy)
+        {
+            return;
+        }
+
         InstantiateBatchLittleEnemy();
         InstantiateOneBigEnemy();
     }
@@ -327,8 +334,12 @@ public class GameManager : Singleton<GameManager>
         PausedLaunch = false;
         CountdownController.Instance.NextRound();
         UpdateStrategy();
-        InstantiateOneBigEnemy();
-        InstantiateBatchLittleEnemy();
+
+        if(!notLaunchEnemy)
+        {
+            InstantiateOneBigEnemy();
+            InstantiateBatchLittleEnemy();
+        }
     }
     private EnemyController.EnemyType GetEnemyTypeByLevel()
     {
