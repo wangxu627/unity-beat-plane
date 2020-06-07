@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using SunnyCat.Tools;
+using Papae.UnitySDK.Managers;
 using Random = UnityEngine.Random;
 
 public class GameManager : Singleton<GameManager>
@@ -25,6 +26,8 @@ public class GameManager : Singleton<GameManager>
 
     [Header("Player Settings")]
     public PlayerController player;
+    public int initialReviveCount = 1;
+
     [Header("Enemy Settings")]
     public GameObject littleEnemy;
     public GameObject bossEnemy;
@@ -32,11 +35,16 @@ public class GameManager : Singleton<GameManager>
     public GameObject[] bigEnemyL2;
     public GameObject[] bigEnemyL3;
 
-
     [Header("Level Settings")]
     public float introOffset = 100;
     public Transform introFrom;
     public Transform introTo;
+
+    [Header("Audio Source")]
+    public AudioClip menuClip;
+    public AudioClip gameClip;
+
+    [Header("Message")]
     public string[] messages = new string[]{
         "Fight alone until dawn comes",
         "Hell is not only one level",
@@ -90,6 +98,7 @@ public class GameManager : Singleton<GameManager>
     public GameState currentGameState {get;set;}
     public bool PausedLaunch {get;set;}
     public int CurrentMessageIndex {get;set;}
+    public int CurrentReviveCount {get;private set;}
     
     private Strategy strategy = new Strategy();
     protected override void Awake()
@@ -136,9 +145,12 @@ public class GameManager : Singleton<GameManager>
         Time.timeScale = 1;
         UIManager.Instance.OpenMenuGroup(true);
         UIManager.Instance.CloseGameGroup();
+        InputManager.Instance.SetVirutalJoystickActive(false);
         player.gameObject.SetActive(false);
         ClearAllEnemies();
         ClearAllBullets();
+
+        AudioManager.Instance.PlayBGM(menuClip, MusicTransition.LinearFade);
     }
     private void ChangeStateToIntro()
     {
@@ -150,6 +162,8 @@ public class GameManager : Singleton<GameManager>
         player.SetControlMode(PlayerController.ControlMode.AI);
         player.gameObject.SetActive(true);
         player.gameObject.transform.position = introFrom.position;
+
+        CurrentReviveCount = initialReviveCount;
 
         var s = DOTween.Sequence();
         s.Append(player.gameObject.transform.DOMove(introTo.position, 1.0f));
@@ -166,10 +180,11 @@ public class GameManager : Singleton<GameManager>
         });
         player.Initialization();
         
-        
+        AudioManager.Instance.PlayBGM(gameClip, MusicTransition.LinearFade);
     }
     private void ChangeStateToPlaying()
     {
+        InputManager.Instance.SetVirutalJoystickActive(true);
         if(currentGameState == GameState.Intro)
         {
             LittleEnemiesCount = 0;
@@ -210,14 +225,15 @@ public class GameManager : Singleton<GameManager>
 
     private void InstantiateBatchLittleEnemy()
     {
-        int count = 5;
+        int count = Random.Range(4, 7);
         for(int i = 0;i < count;i++)
         {
             string info = GetNextAndroidInfo<string>();
 
             GameObject enemyIns = Instantiate(littleEnemy);
-            EnemyController c = enemyIns.GetComponent<EnemyController>();
-            c.SetDisplayName(info);
+            EnemyController ec = enemyIns.GetComponent<EnemyController>();
+            ec.SetDisplayName(info);
+            ec.UpdateBulletConfiguration();
             float x = Random.Range(0, Screen.width);
             float y = Screen.height + 100;
             enemyIns.transform.position = Utils.ScreenPosition2WorldPosition(new Vector2(x, y));
@@ -228,13 +244,18 @@ public class GameManager : Singleton<GameManager>
             }
             LittleEnemiesCount++;
         }
+
+        // new logic
+        if(Random.Range(0, 100) < 10)
+        {
+            InstantiateOneBigEnemy();
+        }
     }
 
     private void InstantiateOneBigEnemy()
     {
         string info = GetNextBossInfo<string>();
 
-        // GameObject go = strategy.bigEnemy[Random.Range(0, strategy.bigEnemy.Length)];
         GameObject enemyIns = Instantiate(bossEnemy);
         EnemyController ec = enemyIns.GetComponent<EnemyController>();
         ec.enemyType = GetEnemyTypeByLevel();
@@ -242,6 +263,7 @@ public class GameManager : Singleton<GameManager>
         ec.SetDisplayColor(CountdownController.Instance.CurrentColor);
         EnemyWeaponController ewc = enemyIns.GetComponent<EnemyWeaponController>();
         ewc.EquipWeapon();
+        ec.UpdateBulletConfiguration();
         float x = Random.Range(0, Screen.width);
         float y = Screen.height + 100;
         enemyIns.transform.position = Utils.ScreenPosition2WorldPosition(new Vector2(x, y));
@@ -268,7 +290,6 @@ public class GameManager : Singleton<GameManager>
     private void OnLittleEnemyDeath()
     {
         LittleEnemiesCount--;
-        Debug.Log("==========>> OnLittleEnemyDeath : " + LittleEnemiesCount);
         if(LittleEnemiesCount == 0 && !PausedLaunch)
         {
             InstantiateBatchLittleEnemy();
@@ -313,11 +334,13 @@ public class GameManager : Singleton<GameManager>
     }
     private IEnumerator ShowMessage(Action action)
     {
+        player.SetControlMode(PlayerController.ControlMode.AI);
         UIManager.Instance.ShowMessage(messages[CurrentMessageIndex]);
         CurrentMessageIndex++;
         yield return new WaitForSeconds(3);
         UIManager.Instance.HideMessage();
         yield return new WaitForSeconds(1);
+        player.SetControlMode(PlayerController.ControlMode.Player);
         
         if(CountdownController.Instance.HasNextRound())
         {
@@ -373,9 +396,7 @@ public class GameManager : Singleton<GameManager>
     public void Revive()
     {
         ChangeGameState(GameState.Playing);
-        player.gameObject.SetActive(true);
-        player.GetComponent<Health>().Revive();
-        player.GetComponent<Health>().DamageDisabled();
-        StartCoroutine(player.GetComponent<Health>().DamageEnabled(5));
+        CurrentReviveCount = CurrentReviveCount - 1;
+        player.Revive();
     }
 }

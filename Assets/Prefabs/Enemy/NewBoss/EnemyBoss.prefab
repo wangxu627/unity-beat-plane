@@ -5102,7 +5102,7 @@ MonoBehaviour:
   dieParticlePrefab: {fileID: 5273407927567983555, guid: 53161eed649fdba4a991dbd5fb583516,
     type: 3}
   allBetweenDelay: 0.4
-  allAutoReleaseTime: 4
+  allAutoReleaseTime: 7
 --- !u!114 &6619519322558607815
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -18,6 +18,10 @@ public class PlayerRotationMouseController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(!this.enabled)
+        {
+            return;
+        }
         if(GameManager.Instance.currentGameState == GameManager.GameState.Playing)
         {
             AlignToPoint2D(Input.mousePosition);

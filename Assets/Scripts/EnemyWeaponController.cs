@@ -15,8 +15,6 @@ public class EnemyWeaponController : MonoBehaviour
     void Start()
     {
         enemyController = GetComponent<EnemyController>();
-        Debug.Log("KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK");
-        Debug.Log(enemyController);
     }
     public void EquipWeapon()
     {
@@ -27,15 +25,15 @@ public class EnemyWeaponController : MonoBehaviour
         GameObject gameObject = null;
         if(enemyController.enemyType == EnemyController.EnemyType.EnemyLevel1)
         {
-            gameObject = Instantiate(weaponsLevel1[0]);
+            gameObject = Instantiate(weaponsLevel1[Random.Range(0, weaponsLevel1.Length)]);
         }
         else if(enemyController.enemyType == EnemyController.EnemyType.EnemyLevel2)
         {
-            gameObject = Instantiate(weaponsLevel2[0]);
+            gameObject = Instantiate(weaponsLevel2[Random.Range(0, weaponsLevel2.Length)]);
         }
         else if(enemyController.enemyType == EnemyController.EnemyType.EnemyLevel3)
         {
-            gameObject = Instantiate(weaponsLevel3[0]);
+            gameObject = Instantiate(weaponsLevel3[Random.Range(0, weaponsLevel3.Length)]);
         }
         gameObject.transform.parent = weaponHandle;
     }

@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using SunnyCat.Tools;
 using DG.Tweening;
 using TMPro;
+using Papae.UnitySDK.Managers;
 
 public class UIManager : Singleton<UIManager>
 {
@@ -18,9 +20,10 @@ public class UIManager : Singleton<UIManager>
     [Header("Button")]
     public GameObject pauseButton;
     public TextMeshProUGUI commonText;
-    
     public TextMeshProUGUI counterdownText;
     public TextMeshProUGUI messageText;
+    public Button reviveButton;
+    public CustomToggle soundButton;
 
     // private CountdownController countdownController;
     private bool isPauseShow;
@@ -104,6 +107,13 @@ public class UIManager : Singleton<UIManager>
         StartCoroutine(Utils.DelayCall(()=>{
             GameManager.Instance.ChangeGameState(GameManager.GameState.Intro);
         }, 1.0f));
+        AudioManager.Instance.PlayOneShot(AudioManager.Instance.GetClipFromPlaylist("Button Clicked"));
+    }
+
+    public void OnMusicButtonClicked()
+    {
+        AudioManager.Instance.IsMusicOn = soundButton.IsOn;
+        AudioManager.Instance.IsSoundOn = soundButton.IsOn;
     }
 
     public void OnPauseButtonClicked()
@@ -169,6 +179,9 @@ public class UIManager : Singleton<UIManager>
         var s = DOTween.Sequence();
         s.Append(canvasGroup.DOFade(1.0f, 1.0f));
         s.AppendCallback(() => {});
+
+        reviveButton.interactable = GameManager.Instance.CurrentReviveCount > 0;
+        reviveButton.GetComponent<CustomButton>().UpdateState();
     }
 
     public void CloseFailedPanel()

@@ -1,0 +1,381 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &100000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400000}
+  - 33: {fileID: 3300000}
+  - 23: {fileID: 2300000}
+  - 54: {fileID: 5400000}
+  - 114: {fileID: 11400000}
+  - 135: {fileID: 13500000}
+  - 114: {fileID: 11400002}
+  - 114: {fileID: 11400004}
+  m_Layer: 2
+  m_Name: Enemy3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &400000
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 92.8280029, y: 18.1576881, z: -81.5548248}
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!23 &2300000
+Renderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: 74f83432504562942ba6538123688884, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!33 &3300000
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &5400000
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: .0500000007
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d91f7f5ad1588204cb84a9b126fdb0d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedMultiplier: 8
+  randomHoriz: 1
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 204c52b1bd219bc4d981667d797f5983, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameOverBehavior: 1
+  syncHitPointWorldVariable: 0
+  hitPoints:
+    variableSource: 1
+    worldVariableName: 
+    curModMode: 1
+    selfValue: 1
+    minimum: 1
+    maximum: 100000
+  maxHitPoints:
+    variableSource: 1
+    worldVariableName: 
+    curModMode: 1
+    selfValue: 100000
+    minimum: -100000
+    maximum: 100000
+  atckPoints:
+    variableSource: 1
+    worldVariableName: 
+    curModMode: 1
+    selfValue: 1
+    minimum: -100000
+    maximum: 100000
+  listener: {fileID: 0}
+  poolBossCategoryName: Enemies
+  invincibilityExpanded: 0
+  isInvincible: 0
+  invincibleWhileChildrenKillablesExist: 1
+  disableCollidersWhileChildrenKillablesExist: 0
+  invincibleOnSpawn: 0
+  invincibleTimeSpawn:
+    variableSource: 1
+    worldVariableName: 
+    curModMode: 1
+    selfValue: 2
+    minimum: 0
+    maximum: 3.40282347e+38
+  invincibleWhenDamaged: 0
+  invincibleDamageTime:
+    variableSource: 1
+    worldVariableName: 
+    curModMode: 1
+    selfValue: 1
+    minimum: 0
+    maximum: 3.40282347e+38
+  invinceHitPrefabSource: 0
+  invinceHitPrefabPoolIndex: 0
+  invinceHitPrefabPoolName: 
+  invinceHitPrefabSpecific: {fileID: 0}
+  invinceHitPrefabCategoryName: 
+  invinceHitPrefabRandomizeXRotation: 0
+  invinceHitPrefabRandomizeYRotation: 0
+  invinceHitPrefabRandomizeZRotation: 0
+  enableLogging: 0
+  filtersExpanded: 1
+  ignoreKillablesSpawnedByMe: 1
+  useLayerFilter: 1
+  useTagFilter: 0
+  showVisibilitySettings: 0
+  despawnWhenOffscreen: 1
+  despawnOnClick: 0
+  despawnOnMouseClick: 0
+  despawnIfNotVisible: 0
+  despawnIfNotVisibleForSec:
+    variableSource: 1
+    worldVariableName: 
+    curModMode: 1
+    selfValue: 5
+    minimum: .100000001
+    maximum: 3.40282347e+38
+  vanishPrefabSource: 0
+  vanishPrefabPoolIndex: 0
+  vanishPrefabPoolName: 
+  vanishPrefabSpecific: {fileID: 0}
+  vanishPrefabCategoryName: 
+  vanishPrefabRandomizeXRotation: 0
+  vanishPrefabRandomizeYRotation: 0
+  vanishPrefabRandomizeZRotation: 0
+  ignoreOffscreenHits: 1
+  matchingTags:
+  - Untagged
+  matchingLayers: 0000000001000000
+  despawnMode: 0
+  includeNonKillables: 0
+  damageFireEvents: 0
+  damageCustomEvents: []
+  dealDamageFireEvents: 0
+  dealDamageCustomEvents: []
+  deathFireEvents: 0
+  deathCustomEvents: []
+  despawnStatModifiersExpanded: 1
+  playerStatDespawnModifiers:
+    scenarioName: CONDITION_NAME
+    statMods:
+    - _statName: Score
+      _modValueIntAmt:
+        variableSource: 1
+        worldVariableName: 
+        curModMode: 1
+        selfValue: 100
+        minimum: -2147483648
+        maximum: 2147483647
+      _modValueFloatAmt:
+        variableSource: 1
+        worldVariableName: 
+        curModMode: 1
+        selfValue: 0
+        minimum: -3.40282347e+38
+        maximum: 3.40282347e+38
+      _varTypeToUse: 0
+  alternateModifiers: []
+  dealDamagePrefabExpanded: 0
+  dealDamagePrefabSource: 0
+  dealDamagePrefabPoolIndex: 0
+  dealDamagePrefabPoolName: 
+  dealDamagePrefabSpecific: {fileID: 0}
+  dealDamagePrefabCategoryName: 
+  dealDamagePrefabOnDeathHit: 0
+  dealDamagePrefabRandomizeXRotation: 0
+  dealDamagePrefabRandomizeYRotation: 0
+  dealDamagePrefabRandomizeZRotation: 0
+  damagePrefabExpanded: 0
+  damagePrefabSource: 0
+  damagePrefabPoolIndex: 0
+  damagePrefabPoolName: 
+  damagePrefabSpecific: {fileID: 0}
+  damagePrefabCategoryName: 
+  damagePrefabSpawnMode: 0
+  damagePrefabSpawnQuantity:
+    variableSource: 1
+    worldVariableName: 
+    curModMode: 1
+    selfValue: 1
+    minimum: 1
+    maximum: 100
+  damageGroupsize:
+    variableSource: 1
+    worldVariableName: 
+    curModMode: 1
+    selfValue: 1
+    minimum: 1
+    maximum: 500
+  damagePrefabOffset: {x: 0, y: 0, z: 0}
+  damagePrefabIncrementalOffset: {x: 0, y: 0, z: 0}
+  damagePrefabRandomizeXRotation: 0
+  damagePrefabRandomizeYRotation: 0
+  damagePrefabRandomizeZRotation: 0
+  despawnStatDamageModifiersExpanded: 0
+  damagePrefabOnDeathHit: 0
+  playerStatDamageModifiers:
+    scenarioName: CONDITION_NAME
+    statMods: []
+  damageKnockBackExpanded: 0
+  sendDamageKnockback: 0
+  receiveKnockbackWhenDamaged: 0
+  receiveKnockbackWhenInvince: 0
+  damageKnockUpMeters:
+    variableSource: 1
+    worldVariableName: 
+    curModMode: 1
+    selfValue: 10
+    minimum: -3.40282347e+38
+    maximum: 3.40282347e+38
+  damageKnockBackFactor:
+    variableSource: 1
+    worldVariableName: 
+    curModMode: 1
+    selfValue: 3
+    minimum: -3.40282347e+38
+    maximum: 3.40282347e+38
+  deathPrefabSource: 0
+  deathPrefabPoolIndex: 0
+  deathPrefabPoolName: 
+  deathPrefabSettingsExpanded: 1
+  deathPrefabSpecific: {fileID: 400000, guid: 72e6f4050c047b24b8daf5f55fefae0c, type: 2}
+  deathPrefabCategoryName: 
+  deathPrefabKeepSameParent: 1
+  deathPrefabSpawnPercent:
+    variableSource: 1
+    worldVariableName: 
+    curModMode: 1
+    selfValue: 100
+    minimum: 0
+    maximum: 100
+  deathPrefabSpawnLocation: 0
+  deathPrefabQty:
+    variableSource: 1
+    worldVariableName: 
+    curModMode: 1
+    selfValue: 1
+    minimum: 0
+    maximum: 100
+  deathPrefabOffset: {x: 0, y: 0, z: 0}
+  deathPrefabIncrementalOffset: {x: 0, y: 0, z: 0}
+  rotationMode: 2
+  deathPrefabRandomizeXRotation: 0
+  deathPrefabRandomizeYRotation: 0
+  deathPrefabRandomizeZRotation: 0
+  deathPrefabKeepVelocity: 1
+  deathPrefabCustomRotation: {x: 0, y: 0, z: 0}
+  deathDelay:
+    variableSource: 1
+    worldVariableName: 
+    curModMode: 1
+    selfValue: 0
+    minimum: 0
+    maximum: 100
+  spawnerDestroyedAction: 0
+  parentKillableForParentDestroyed: {fileID: 0}
+  parentDestroyedAction: 0
+  deathDespawnBehavior: 0
+  timerDeathEnabled: 0
+  timerDeathSeconds:
+    variableSource: 1
+    worldVariableName: 
+    curModMode: 1
+    selfValue: 1
+    minimum: .100000001
+    maximum: 3.40282347e+38
+  timeUpAction: 2
+  distanceDeathEnabled: 0
+  tooFarDistance:
+    variableSource: 1
+    worldVariableName: 
+    curModMode: 1
+    selfValue: 1
+    minimum: .100000001
+    maximum: 3.40282347e+38
+  distanceDeathAction: 2
+  currentHitPoints: 0
+  isVisible: 0
+  showRespawnSettings: 0
+  respawnType: 0
+  timesToRespawn: 1
+  respawnDelay:
+    variableSource: 1
+    worldVariableName: 
+    curModMode: 1
+    selfValue: 0
+    minimum: 0
+    maximum: 100
+  respawnFireEvents: 0
+  respawnCustomEvents: []
+--- !u!114 &11400004
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 715655405f7792442b10a3dc4c63ddbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolItemName: Enemy3
+--- !u!135 &13500000
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 100000}
+  m_IsPrefabParent: 1
+  m_IsExploded: 1

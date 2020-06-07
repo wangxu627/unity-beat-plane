@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using DarkTonic.CoreGameKit;
+using Papae.UnitySDK.Managers;
 
 public class PlayerSimpleFireController : MonoBehaviour
 {
@@ -51,10 +53,14 @@ public class PlayerSimpleFireController : MonoBehaviour
 
     private void Fire()
     {
-        Vector3 rotation = this.transform.forward;
-        GameObject obj = Instantiate(this.bullet, this.firePoint.position, Quaternion.identity);
-        obj.transform.forward = this.transform.forward;
-        obj.transform.localRotation = Quaternion.Euler(this.transform.localRotation.eulerAngles.x, this.transform.localRotation.eulerAngles.y, 90);
+        Vector3 rotation = transform.forward;
+        // GameObject obj = Instantiate(this.bullet, this.firePoint.position, Quaternion.identity);
+        Transform obj = PoolBoss.SpawnInPool(bullet.transform, firePoint.position, Quaternion.identity);
+        obj.forward = transform.forward;
+        obj.localRotation = Quaternion.Euler(transform.localRotation.eulerAngles);
+        obj.gameObject.GetComponent<AutoDestroy>().AutoDestroyMe();
+
+        AudioManager.Instance.PlayOneShot(AudioManager.Instance.GetClipFromPlaylist("Laser Shot 2"));
         //obj.transform.Rotate(obj.transform.forward, 90);
         //obj.transform.up = this.transform.up;
         //obj.transform.localRotation = Quaternion.Euler(rotation.x, rotation.y, rotation.z);

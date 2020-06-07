@@ -1,0 +1,811 @@
+CORE GAMEKIT PLUGIN - By Dark Tonic, Inc. (c) 2012-2018
+
+-Code by Brian Hunsaker
+
+-V 3.2.7.9  - Fixed bug: Triggered Spawner V2 tracking would sometimes trigger wave completed when things still unspawned.
+			- Fixed bug: Triggered Spawner V2 "disable event after" did not wait for wave repeats before disabling, so repeats did not happen.
+			- Fixed bug: Unity 2018 will crash when trying to select a Prefab Pool due to serialization changes.
+			- Fixed bug: Restarting the game when you're still in the first Global Wave would not restart the incremental wave changes.
+			- Fixed bug: Android will now save World Variable values when you press the home button to exit game.
+			- Fixed bug: If you simultaneously restart the game (when not GameOver) and unpause the global wave, you would have an extra prefab spawn from your wave spawner.
+			- Fixed bug: Restarting same wave would wait for the wave repeat time. Now will restart immediately.
+			- Fixed bug: Small garbage collection in Pool Boss.
+			- Fixed bug: Opening LevelWaveSettings prefab in Unity 2018.3 caused errors and the Create button was missing.
+			- Now supports auto-destroy of LevelWaveSettings in the Scene you're loading if you already had a persistent LevelWaveSettings game object from a previous Scene.
+
+-V 3.2.7.8 	- Fixed bug: Killable in the Scene that was a child game object would create the PoolableInfo script on itself, which would screw up Pool Boss. Only top-level objects should have that.
+			- Fixed compile errors for Unity 2018 and possibly 2017 certain versions?
+			- Added "Trigger Stay" and "Trigger Stay 2d" events to Triggered Spawner V2 with a "After Stay (seconds)" field.
+			- Added "Wave Elim. Bonus Prefab" section to Syncro Spawners. Field for "Spawn on Wave Repeats" allows you to choose final repeat or all.
+			- Added "Wave Elim. Bonus Prefab" section to Triggered Spawners V2. Only option is to use on all wave repeats.
+			- Name of "Spawn Bonus Prefab" changed to "Wave Elimination Bonus Prefab" everywhere.
+		    - Fixed warning in Unity 2017.4.1
+			- Fixed warnings in Unity 2018.2
+			- Now compatible with Bolt Visual Scripting.
+
+-V 3.2.7.7	- Added Makinom integration (Pool Boss only) optional package in the 3rd Party Integrations folder.
+			- There's now a Core GameKit online documentation website with links from each Inspector to the appropriate help page (green question mark icon).  The readme file is now 2 pages.
+
+-V 3.2.7.6  - Fixed the "Upgrade All Triggered Spawners to V2" script to just find all Triggered Spawners in the Scene. No longer limited to your selection in the Hierarchy. There was no good reason for that, you're going to need to upgrade all of them anyway.
+			- Fixed bug: Repeat wave delay still waits and the end before switching to next wave with "until variable above / below" when the variable is already above / below.
+			- Fixed bug: Global Wave & Level Settings had issues with cloned items not creating a separate KillerInt/Float. This means that adjusting the clone would adjust the original instead.
+			- Fixed bug: Collapse All button on Triggered Spawner V2 actually deleted the wave settings instead of collapsing them.
+			- Fixed bug: Custom Start Level would log an error if you were going to a level with only 1 wave and it wasn't the last level.
+			- Fixed bug: Spawner visualization clones would log Killable events to the Console just before being destroyed when you hit play if they were already colliding with something.
+			- Fixed bug: Seconds Remaining would be incorrect after pausing and unpausing the wave.
+			- Fixed bug: Pausing and unpausing 2 different waves would end the 2nd wave later.
+			- Change: Now the Delay Wave (sec) field for spawners is not used by default on wave repeats. There's a checkbox to use it for wave repeats though if you want the old default. This is because there's already a Repeat Pase in the Repeat Wave section.
+			- Changed Global Wave Duration (seconds) setting to one that allows usage of a World Variable value. You will not lose your old settings if you click the "Copy Durations" button in the Inspector that shows up if you haven't use it before.
+			- Changed "Self" to "Value" for all number fields in the blue source dropdown.
+			- Added a "Bonus Prefab" section in Global waves, so you can now spawn a prefab from the location of the last item killed in each Elimination wave.
+			- Added a WIIU check to not use our file system faster PlayerPrefs on that platform since it doesn't work.
+			- All fields using Killer Variables' values instead of self "Value" will now show the current value at runtime there in the Inspector.
+			- Added a Wave Name Filter to the Global Wave section. You can type a partial Wave Name and it will filter out all waves not matching your text.
+			- Added the ability to copy/move waves from one Syncro Spawner to others in the Inspector.
+			- Triggered Spawner V2 method "SpawnWaveItem" now has an extra paramter, so if you're subclassing it, add it so you can compile again.
+			- Triggered Spawner V2 now supports elimination waves! Each wave has a new field called "Wave Completed When", with 2 choices: Items Done Spawning (default) and Items Eliminated. If you choose Items Eliminated, the Pause Before Repeat will start as soon as all items spawned from the wave are destroyed.
+			- Added section in each wave of Triggered Spawner V2 for Wave Elimination Bonus & Events. It's used to fire Custom Events and add World Variable Modifiers when the wave is eliminated, if Elimination is chosen for "Wave Completed When" in the new option above.
+			- Now all lists of Custom Events have a delete button next to each event instead of only being able to delete the last one.
+			- Added WaveEliminated method to TriggeredSpawnerListener and the Playmaker one.
+			- Added ORK Framework integration (Pool Boss only) optional package in the 3rd Party Integrations folder.
+			- There's now a list of unused spawners in the Global waves section so you can pick one from the list and add a wave quickly from there.
+			- Added a delete button for each spawner (wave) in Global waves section as well for quick deletion.
+			- Added a display of either time remaining or elimination spawners remaining for the current wave on the Game Status Panel during runtime.
+			- Added a section to global elimination waves to also wait for a number of Triggered Spawner Elimination Waves to finish. First you turn on "Use Triggered Spawners". Then you select each Spawner and Elimination Wave from it in a dropdown. You must make the wave spawn before it can finish obviously, through whatever means.
+
+-V 3.2.7.5  - Possible breaking change: some method signatures in TriggeredSpawnerListener changed. Read the comments there if it doesn't compile for a simple fix.
+			- Fixed bug: Adding an in-Scene game object to PoolBoss would lose the reference when the game object gets removed from the Scene.
+			- Fixed bug: Enable event on Triggered Spawner would log errors to Console because it tried to spawn before PoolBoss was ready sometimes.
+			- Fixed bug: Strict Time Style repeating on a spawner doesn't work (requires killing all?)
+			- Fixed bug: Wave Settings and Prefab Pools had issues with cloned items not creating a separate KillerInt/Float. This means that adjusting the clone would adjust the original instead.
+			- Fixed bug: Updated RelationsInspector free version (included) for bug fix on Unity 2017 Cloud building
+			- Fixed bug: Wave Skip Criteria for Global Waves did not display the correct controls to make a valid limit.
+			- Fixed bug: Clone global wave didn't copy Pause Global Wave on completion setting.
+			- Fixed: there is no garbage collection during Despawn now.
+			- Fixed: garbage collection issue in Pool Boss Spawn method. Add to readme that you should put PoolableInfo on any in-Scene objects to save on performance.
+			- Fixed Fire Custom Event Custom Action for Playmaker (couldn't assign some Transforms).
+			- Fixed display issue with Game Status Panel, now displays the correct wave number and level number. Also added new properties for this on LevelSettings that work properly. LevelSettings.CurrentDisplayLevel and LevelSettings.CurrentDisplayWave.
+			- Change: Removed from API all "string prefabName" parameters since now the grabbing of prefab name is not doing any garbage collection.
+			- Added "keepParent" parameter to PoolBoss.Despawn, defaults to false. If you specify true, the Game Object you are despawning will stay where it is in the Hierarchy, disabled. Useful for things that screw up when activated under Pool Boss (UI components come to mind). To respawn one of that Pool item in the same position, use PoolBoss.Spawn and pass in the intended parentTransform.
+ 		 	- If you want Pool Boss to have better performance and register in-Scene game objects so that they can be despawned with "DespawnAllOfPrefab" and show in the spawned count, attach PoolableInfo script to your in-Scene objects.
+			- Added extension methods to PoolBoss: OnLayer and WithScale. You can chain these with a Spawn call, like this: var spawned = PoolBoss.SpawnOutsidePool(ProjectilePrefab.transform, this.trans.position, Quaternion.identity).OnLayer(LayerMask.NameToLayer("IgnoreRaycasts")).WithScale(new Vector3(4,4,4));
+			- Added icons for PoolBoss, Prefab Pools and World Variables in the header logo that shows in Inspectors so you can quickly navigate to those.
+			- Added item count to Prefab Pools section for each Prefab Pool.
+			- Added LevelSettings.FireCustomEventWithParam method. You would need to code your own Listeners to read this parameter, but it's now there to use. Retrieve param with LevelSettings.GetCustomEventParam method.
+			- Created new Triggered Spawner V2 script. The old Triggered Spawner script is now deprecated. There is a button in the old Triggered Spawner script to migrate all settings into the new one. The old one had very bloated memory usage and the new one does not.
+			- Added tool script on the Window menu to convert all old Triggered Spawners in the current Scene to V2 (see previous bullet).
+			- You can now fire a Custom Event more than once a frame if its origin is different. Only for Receive Types that search same game object / parents / children.
+			- Changed the default: Now NavMeshAgent components on Pool Items are not automatically enabled on spawn. There is a new setting for Pool Items with NavMeshAgent to make it work as before.
+
+-V 3.2.7.4  - Added option to spawners for "Apply Layer Recursively" so it's not on the top-level game object if you want, when you spawn things.
+			- Bug fix: Restored the ability to create the first Level with a new project (dumb mistake, sorry).
+			- Bug fix: If you pause a global wave and unpause later, the following timed waves will switch at the correct time, accounting for paused time.
+			- PoolBoss check for "IsActive" slightly different now to fix another rare bug. Should not break anything though.
+			- Added "timed to animation %" functionality to MechanimStateCoreCustomEvents.
+			- Killable "Deal Damage Prefab Settings" changed to "Deal Damage Prefab Settings & Events" since there are more settings there now (Custom Events to fire when dealing damage).
+			- Change: First item in a wave now spawns immediately by default instead of waiting for "time between spawns". If you still want a pause at the beginning of the wave, use the Wave Delay field that was always there.
+			- Change repeat wave sections in both spawner types. Now there's a min and max limit for time and qty change, and checkbox to "reset" if limits are reached, meaning revert back to the original wave setting and start the increments over. So you can have something spawn 3,4,5,6, restart at 3 again.
+			- PoolBoss has new checkbox for "Can Disabled Obj. Despawn" (defaults to false). If you need to be able to despawn a game object you have disabled, you must check that box. It is worse on performance because it doesn't only check "is the object enabled" so only use it if you must have the ability.
+			- Added Level filter to Syncro Spawners so you can hide all waves not in that level.
+			- Fixed: invisible unused selections assigned to non-existent World Variables for Killable would log to console.
+						
+-V 3.2.7.3  - Bug fix: A killable dying that isn't in Pool Boss will not spawn up to the limit of its Death Prefab in a huge loop. As a result, many Killable methods that were void are now boolean. Your subclasses will need to reflect that.
+			- Bug fix: Respawn Custom Events for Killable would not fire if your Respawn Delay was > 0 seconds.
+			- Added "Initialize Time (Frames)" field to Pool Boss. Defaults to 1. Now you can configure how many frames it takes to create all pools. You can set it between 1 and the number of different prefabs you have in Pool Boss.
+			- Added PoolBossListener with methods: ItemSpawned, ItemDespawned, PercentInitialized, InitializationComplete.
+			- Added Universal Custom Event Receiver script with the option to do one of the following when a chosen Custom Event occurs: Despawn, Destroy (Killable), Deal X Damage (Killable).
+			- Now if a World Variable Listener becomes visible later on, it will show the correct updated World Variable value immediately instead of waiting for the next change.
+			- Added a peak indicator on Pool Boss. Shows the max number that were spawned of each item since you hit Play. You can click the number to reset it to zero. There's also a Clear Peaks button at the top.
+			- Added ability to pad beginning of World Variable Listener display with zeros for a fixed number of digits.
+			- Added extension methods for all methods in PoolBoss that take a Transform parameter so you can call them from the Transform with 1 less parameter.
+		    - Added PoolBoss.DestroyCategoryPoolItems and DestroyPoolItem methods, only to be used when loading a new Scene with a persistent PB.
+			- Added shift up / down / clone level buttons to global Level config.
+			- Added Level/Wave Sort button to Syncro Spawners so you can get the Waves in order of level/wave at any time.
+
+-V 3.2.7.1  - Breaking change: Valid Qty field for Custom Events (used for Closest or Random X Receivers option) has been changed to be able to select a World Variable value as well as entering a number. If you were using / want to use Random/Closest X, then you will need to delete existing Custom Events and create them again.
+			- Added an Awake method to Killable Listener. That will be called when Spawned is not, that is, when a Killable starts already in the Scene and is not spawned the first time.
+			- Added the new method to Killable's Playmaker Listener too.
+			- Added Global wave shift up/down buttons.
+			- Added a pop up prompt to make sure you want to delete / add / shift up / down Global waves because it can't be undone.
+			- Fixed some Garbage Collection in Pool Boss.
+			- Increased Group H.P. for Damage Prefab to max of 100,000 instead of 5,000. If you find it does not let you increase past 5,000 you will need to remove and re-add the Killable component.
+			- Bug fix: PoolBoss.NextPoolItemToSpawn returned null even when Allow Instantiate More is checked.
+			- Added Wave Description field for Global waves.
+
+-V 3.2.7    - Add an option for spawners to "Spawn Outside Pool", meaning with no parent Game Object instead of under Pool Boss. Default is still under Pool Boss.
+			- Added OnSameGameObject, OnChildGameObject & OnParentGameObject custom event Send To Receiver modes.
+			- Breaking change: FireCustomEvent now takes a Transform instead of Vector 3. You must change any code that was calling it.
+			- Updated Playmaker optional package to fix compile errors due to the above change.
+			- Fixed bug where reloading a Scene would log errors for Custom Event Listeners in the Scene.
+			- Fixed compile errors for Unity 2017 beta.
+
+-V 3.2.6.9  - Fixed compile error for Unity 5.5
+			- Fixed max qty mismatch in Pool Boss Inspector.
+			- Fixed Pool Boss lookup prefab name error.
+			- Fixed bug in PoolBossDespawn Playmaker Custom Action that would not despawn 2 different objects if the property changed.
+
+-V 3.2.6.8  - Added ChangeTimerDelay method to TimedDespawner.
+			- Can now see Global Wave name when the wave is collapsed in the Inspector.
+			- Added Level name field for Global Waves. You can see it even when the level is collapsed.
+			- Renamed "Level Waves" to "Levels & Waves" in the LevelSettings Inspector.
+			- Killables can now send Knockback Damage regardless of gravity setting on their Rigidbody. They only can't receive Knockback damage if not gravity.
+			- Killables with a CharacterController now can receive Knockback Damage. It's an instant knockback though since there's no physics force to apply.
+			- Added PoolBoss.NextPoolItemToSpawn method to get you the next item that will spawn for a Pool Item.
+		    - Documentation fix for Knockback on Killables.
+			- Refactored Knockback code to be more understandable.
+			- Fixed UI of Inspector for Triggered Despawner. It now shows a checkbox for each trigger you enable instead of making you "expand" them to denote active, which was really inintuitive.
+			- Added new API method: LevelSettings.RestartGame() - it will set IsGameOver to false and go to level 1, wave 1 if you have Global Waves enabled.
+			- Added new API method: LevelSettings.ContinueGame() - it will set IsGameOver to false and continue from where you died.
+			- Added button to "Restart Game" to Level Settings Inspector when game is over. Will also reset any World Variables marked as "Reset To Starting Value" back to that value.
+			- Added button to "Continue Game" to Level Settings Inspector when game is over. Will also reset any World Variables marked as "Reset To Starting Value" back to that value.
+			- Renamed MechanimCustomEvent to MechanimStateCoreCustomEvents so it wasn't so close to the Master Audio script of MechanimCustomEvents. Please delete the old named file before upgrading.
+			- Added "Collapse All Sections" button to LevelSettings.
+			- Added "Collapse All Sections" button to Killable.
+			- Added "Collapse All Events" button to Triggered Spawner.
+			- Added "Fire!" button to Triggered Spawner Inspector during runtime, to activate the preconfigured wave for any event so you don't have to wait for it to happen.
+			- Added "Spawn Position" dropdown for Death Prefabs in Killables. Choices are Death Position (default) and Respawn position. If you never set Respawn position via code, then it is the original spawn position, which lets you spawn death prefabs from the original spawn position if you choose.
+			- Added LevelStarted method to LevelSettingsListener!
+			- Fixed compilation errors for Windows Phone 8 platform.
+			- Fixed bug where WaveEnded and WaveEndedEarly methods on LevelSettingsListener passed out the wrong wave info.
+			- Added random rotation options to Killable's Death Prefab.
+			- Category active item counts in PoolBoss are now clickable to select all items in the category that are active.
+			- Added Text Item Filter textbox for filtering out what you see in Pool Boss. Helps a ton when you have a lot of prefabs pooled.
+			- Added RefillPool method to WavePrefabPool class, so you can refill the pool at any time, taking into account any weights or World Variable values that have changed since the last fill.
+			- Added "Deal 1 Damage To All" buttons to Pool Boss item, category and "all" so you can deal damage to test things at any time (runtime only).
+			- Changed Damage / Despawn / Kill buttons in Pool Boss to icons.
+	 		- Now only show Damage / Despawn / Kill icons in Pool Boss for the item if there is at least 1 of it spawned. Otherwise they wouldn't do anything.
+
+-V 3.2.6.7  - Fixed bug: selecting a prefab with Triggered Spawner visualization turned on in ProjectView would spam the Console window and create top-level visualization objects.
+		    - Added RelationsInspector integration. Can view Killable chains and what global waves spawn what prefab. Both are launchable with context from the CGK Inspectors.
+			- Moved icons in Gizmos folder into a new subfolder "CoreGameKit" so it's more obvious what they are for.
+
+-V 3.2.6.6  - Added optional Custom Wave Classes feature (for your own use, no base implementation) to classify Global waves as whatever you like - you specify the names. Useful to display custom icons per wave or other things.
+			- Added property drawer for Custom Wave Classes. Decorate a string variable with CoreWaveClassAttribute to use it.
+			- Fixed bug where changing the Prefab To Spawn in a Syncro Spawner wave would not update the visualization, if enabled.
+			- Fixed bug where Recycle Oldest didn't work properly in PoolBoss.
+			- Fixed bug where "Add to PoolBoss" had Inspector error when no LevelWaveSettings game object is in the Scene.
+			- Fixed bug where TriggerEnter2D wave didn't spawn correctly on Triggered Spawners.
+			- Added a "prefab icon" in Pool Boss so you can navigate to the prefab in Project View even when the Pool Item is collapsed.
+			- Added a "New Item Category" dropdown above the drag area for Pool Boss so you can choose what category new items are created in when you drag them in.
+		    - Added fix for PoolBoss. Previously as pooled prefabs created the inactive clones during Awake, anything with a NavMeshAgent might log a warning about "NavMeshAgent not close enough to NavMesh". Now this is fixed, but make sure you turn off the NavMeshAgent component for each pooled prefab. PoolBoss will detect if it is there and enable it whenever it spawns.
+			- Added ability to despawn all / kill all in Pool Boss Inspector for a single category.
+			- Revamped Pool Boss Inspector. Now looks like the other custom Inspectors. Added a spawned prefab count widget at the category level for quick visual feedback.
+			- Added PoolBoss.CategoryItemsDespawned and PoolBoss.CategoryItemsSpawned methods for programmers to use to get counts of items in a single category.
+			- No longer displaying a "Kill All" button for a Pool Boss item if Killable is not on that prefab.
+			- Added Inspector alert when having 2 wave settings of the same level / wave in syncro spawner. This is not supported and currently you had to click play to get an error in the Console.
+			- Added LevelEnded method to LevelSettingsListener and PlaymakerLevelSettingsListener. Called when the last wave of a level is completed.
+			- Added option for Wave Offsets in both spawner types to be chosen randomly or used in order. Defaults to the original setting of random.
+		    - Re-added missing methods to PoolBoss that were erroneously deleted in the last update.
+			- Fixed bug in Unity 5.X where a Killable that takes lethal damage will only battle with a single other Killable even if it hits multiple at the same time.
+			- Fixed bug where sometimes uGUI clicks would not work when using Triggered Spawner on that element.
+			- Prefab Pools, where used, now have a gear to take you to them to edit / inspect.
+			- Added a way to use less than all spawners for global waves (random 1-X spawners).
+			- Make all prefab fields tell you when something is not set up in Pool Boss with option to add it with X copies in a category of your choice.
+			- Buttons in LevelWaveSettings to refresh all / hide all / disable all Visualized waves from both spawner types so updated prefabs will have the correct clones when spawned prefabs were changed after the last visualization.
+			- Added Visualize Wave and Hide Visualization buttons next to each Custom Event in the LevelWaveSettings Inspector. Will rebuild all clones of everything spawning from that Custom Event.
+			- Changed some WorldVariable code to allow oldValue / newValue. To fix compile errors, please re-import all 3rd party plugin packages included in CGK if you use them.
+						
+-V 3.2.6.4  - Now 2 versions of the Visualized Wave Item icon. One for disabled game objects (blue) and one for enabled (light gray).
+			- UndoHelper moved into the DarkTonic.CoreGameKit namespace to avoid naming conflicts with other plugins.
+			- Fixed error when dealing 1 damage to Killable from Inspector button.
+			- Fixed compile errors on Unity 5.3
+			- Added new World Variable code to support oldValue and newValue in the Listeners.
+			- Updated optional packages for NGUI, Playmaker and TextMeshPro to compile with new World Variable changes.
+			- Fixed compile errors for Unity 4.7
+
+-V 3.2.6.3  - Upgrade note: Moved our plugins into Plugins folder to help speed up compile times in your projects! Make sure and drag the entire Assets/DarkTonic folder into Assets/Plugins before upgrading to this version!
+			- Added Mechanim Behavior "MechanimStateCustomEvent" which allows you to fire a Custom Event when a Mechanim state is entered and/or exited. Just add it to the Mechanim state in the Animator window!
+			- Added Sort Alpha and Collapse / Expand All buttons to Custom Events section.
+			- Fixed Playmaker custom action: Master Audio Group Set Pitch now has max of 3, not 1.
+			- Fixed bug: Spawned method in KillableListener got called twice on first spawn.
+			- Fixed bug: Triggered Spawners ignored Retrigger Limits and Spawner Active Mode fields and always spawned waves.
+			- Fixed bug: "Per Hit" Damage prefabs in Killable would not spawn Damage Prefabs when invincible.
+			- Fixed bug: No longer spawning damage prefab when getting hit while invincible on Killables.
+			- Added Spawned and Despawned events to TriggeredSpawnerListener.
+			- Added "Invincible after damaged" for X seconds option to Killable. This will make the Retrigger Limit section usually not needed.
+			- Removed "Explosion Prefab" from Killable top section. This was not needed as it does the same thing (but far less options) as the Death Prefab feature.
+			- Removed "Retrigger Limit Mode" from Killable. Use "Invincible after damaged" feature instead.
+			- Added IsDead property to Killable. Other non-CGK scripts may want to know whether the Killable is dead (doing death animation etc) to stop their effects.
+			- Added all Killable Listener methods as virtual methods to Killable class. Now you may never need to use a Killable Listener if you create Killable subclasses. 
+			- Added "Deal Damage Prefab" section to Killable for specifying a prefab to show for each Killable you damage.
+			- Wave Offset is now applied on top of Random Positioning for both spawner types.
+			- Custom Position X/Y/Z on spawners is now float, not int, for more precise positioning. Note that any values you had before will be reset to zero.
+			- "Use Spawner Position" renamed to "Spawner Position" in Position Mode for spawners.
+			- Added 3rd Position Mode to spawners: Other Object Position. This lets you drag in another game object and use its position to spawn.
+			- Added option to pause Global Waves at end of each Global Wave. This way you can show a message or whatever and unpause the Global Waves when ready to proceed.
+			- Added DestroyImmediately method to Killable, which ignores the DeathDelay. Updated Playmaker custom action "Core GameKit Killable Destroy" for this as well.
+			- Added "Valid Receivers" dropdown to Custom Events. Choices are All, Random & Closest. For Random & Closest you get to specify a number. That way you can say the closest 3 or a random 1 Receiver will receive the event only.
+			- Added "Vanish prefab" settings in Death & Despawn Triggers section of Killable. This prefab will be spawned if the Killable despawns without being "killed".
+			- Added "Invince Hit prefab" settings in Invincibility section of Killable. This prefab will be spawned if the Killable gets hit while Invincible.
+			- Renamed method "SpawnDamagePrefab" to "SpawnPrefab" since it was used by more than just Damage Prefabs. If you had a subclass of Killable and were overriding this method, you will need to change the method name to match.
+			- No longer allow selection of 0 items in Pool Boss during runtime since you lose your selection if you do that.
+			- Added "game status panel" section on Level Settings game object during runtime. Shows status of "game over" (or not), current level and wave, whether global waves are paused, and buttons to pause/unpause/end wave.
+			- Syncro / Triggered Spawners and Killable now show at top whether they are active based on wave pause and "game over" status as well.
+			- Added prominent red box saying "Despawned and inactive" at top of Killable and Triggered Spawner components while they are despawned in Pool Boss.
+			- Now have a "visualized wave item" eye icon in the Hierarchy for each item shown under spawners in edit mode for visualization purposes.
+			- Added TextMeshPro package for displaying World Variable values with no code!
+			- Added new method CreateNewPoolItem to dynamically (via code) create new Pool Boss items at runtime, including creating new category.
+
+-V 3.2.6.2  - Added property SpawnedWaveMembers to Syncro Spawners to get a list of items spawned and not yet destroyed of the current wave.
+			- Added checkbox to Visualization Waves of Triggered Spawners just like Syncro Spawners have!
+			- Added check in Pool Boss for Trail Render or Particle Animator components with auto-destruct enabled and show a warning in the Inspector if so. Pool Items should never be destroyed, only despawned!
+			- Added "StopDeathTimer" and "StartDeathTimer" methods to Killable.
+			- Fixed bug: Visualize Wave in Level Settings (showing multiple spawner waves all at once) only worked if that Global Wave is not collapsed.
+			- Fixed bug: With multiple waves having visualization turned on for a Syncro Spawner, only the lowest one gets rendered always.
+			- Fixed bug: Select & List buttons for Prefab Pools would not find Triggered Spawner Custom Event waves that used the Prefab Pool.
+
+-V 3.2.6.1  - Added NodeCanvas integration optional package to our plugin.
+			- Added "Spawn on Death Hit" checkbox (defaults to off) for Damage Prefabs, so you can choose to have damage prefabs during the final death hit or not.
+			- Added Incremental Offset (Vector3) to Killable's Damage Prefab section, to add to the position of each additional Damage Prefab after the first.
+			- Added Incremental Offset (Vector3) to Killable's Death Prefab section, to add to the position of each additional Death Prefab after the first.
+			- Added "Allow Non-Killable Hits" checkbox when using HP Death Mode of "Collision or Trigger" for Killable. This allows you to permit collisions with a non-Killable to cause the Killable to die!
+			- Added "travel distance death" section to Killables so they can automatically die after moving X distance from spawn point.
+			- Added category feature to Pool Boss (for visual organization only). Each category's items are alpha sorted and the categories can be shifted up and down.
+			- Added color coding to Pool Boss during runtime to show which Pool Items have nothing spawned (red) and things spawned (yellow).
+			- Added "Triggered Spawner Activate Wave" task for Behavior Designer.
+			- Added "StopDeathTimer" and "StartDeathTimer" methods to Killable.
+			- Removed alpha sort and shift up / shift down buttons from Pool Boss. 			
+			- Fixed bug where having another class named "Button" in your project would cause a compilation error in CGK.
+			- Fixed all compile warnings for Unity 5.1
+
+-V 3.2.6    - Small setting will be lost! Removed single setting for Wave Offset in waves of Syncro Spawner and Triggered Spawner. Replaced by ability to add any number of randomly chosen Wave Offsets. You will lose any settings you had for Wave Offset, so take note of them before upgrading to this version!
+		    - Moved UndoHelper into main Editor folder. No need for extra folder when it can't be shared with our other plugins. Please delete the old one in DarkTonic\Editor folder when updating.
+			- Fixed World Variable Listeners for Unity 4.5 - they were not working.
+			- Fixed World Variable Listeners for Unity 4.6+ - they were not working.
+			- Fixed Unity 4.6 example scene, it had some missing scripts.
+			- Renamed "Wave Spawn Bonus" to "Wave Spawn Bonus & Events" because it now can fire any number of Custom Events.
+			- Added ability to fire custom event(s) from wave start on Triggered Spawner.
+			- Fixed Custom Event endless retrigger bug that can be set up on accident.
+			- 2D Knockback now works correctly. Previously only "knock up" worked for 2D. Now it knocks you left or right depending on the location of the other Killable compared to yours (x coordinate).
+			- Added ability to clone Global wave.
+			- Added ability to clone Syncro Spawner wave.
+			- Added ability to clone Pool Boss item.
+			- Added ability to clone Prefab Pool item.
+			- Added missing position parameter to FireCustomEventIfValid new method.
+			- Changed ModifyWorldVariables method in Killable to public virtual so it can be changed in a subclass.
+			- Renamed "Respawn Settings" to "Respawn Settings & Events" in Killable's Inspector.
+			- Added Respawn Custom Events section to Killable's Respawn Settings & Events section. Now you can select any number of Custom Events to fire each time the Killable is respawned!
+
+-V 3.2.5    - Fixed bug where ResetVelocity call in Killable would throw a Null Reference error for Rigidbody2D.
+			- Fixed bug in Triggered Spawners where the wrong event's layer/tag filters cause "endless" waves to stop.
+			- Added field to Global Waves called "Last Level Completed". Choices are "Win" (default) and "Repeat All Levels From Beginning". This allows you to make the levels go on forever.
+			- Removed BoltEngine partial code. Bolt is stalled and not usable on Unity 5. May be added back later at some point.
+			- Updated BehaviorDesigner package with their latest updates.
+			- Created CoreCustomEvent attribute that you can decorate any public string field in your classes with. Holds a dropdown list of all Custom Events in the Scene.
+			- Added Initialization Options section to LevelSettings up top. Now you can select any number of Custom Events to fire when LevelSettings has finished initializing!
+			- Added Wave Completion Custom Events section to LevelSettings global waves setup. Now you can select any number of Custom Events to fire when the wave is completed!
+			- Added Wave Repeat Custom Events section to Syncro Spawner waves setup. Now you can select any number of Custom Events to fire each time the wave is repeated!
+			- Added Wave Repeat Custom Events section to Triggered Spawner waves setup. Now you can select any number of Custom Events to fire each time the wave is repeated!
+			- Added Damage Custom Events section to Killable's Damage Prefab Settings / Events section. Now you can select any number of Custom Events to fire each time damage is taken!
+			- Added Death Custom Events section to Killable's Damage Prefab Settings / Events section. Now you can select any number of Custom Events to fire when the Killable is destroyed!
+			- Added Custom Events section to World Variable's Inspector. Now you can select any number of Custom Events to fire each time the variable is updated!
+			- Added checkbox option for Wave Spawn Bonus to "Use On First Spawn". Default is on. That way you can use the Wave Spawn Bonus for wave start, each repeat, or both.
+			- Renamed "Wave Repeat Bonus" to "Repeat Bonus" in Syncro Spawner.
+			- Renamed "Damage Prefab Settings" to "Damage Prefab Settings & Events" in Killable's Inspector.
+			- Renamed "Death Prefab Settings" to "Death Prefab Settings & Events" in Killable's Inspector.
+			- Moved Retrigger Limit into Damage Settings for Killable where it belongs.
+			- When restarting randomly ordered Global Waves, re-randomize the order of all waves in a Level.
+
+-V 3.2.4    - Breaking change (if you have written code): All classes are now in the DarkTonic.CoreGameKit namespace. You will need to add "using DarkTonic.CoreGameKit;" at the top of all scripts you've written that use the Core GameKit API.
+			- Updated NGUI package to add the namespaces.
+			- Updated Playmaker package to add the namespaces.
+			- Updated Behavior Designer packages to add the namespaces.
+			- Fixed bug: Knockback damage didn't check receivers for IsGravity on the rigidbody before sending.
+			- Fixed compile bug on Web Player.
+			- Fixed rare bug with Pool Boss not finding prefab of previously despawned prefab.
+			- Now the value of all Inspector fields set to "self" can be dragged like normal Unity fields. Just drag left or right on the I or F (for Int and Float) next to the value. Awesome for the new wave visualization feature!
+			- Now Knockback settings work on Rigidbody2D as well.
+			- Ignore Offscreen Hits now defaults to false. Since more people are probably using sprites, that old default is going to interfere more than help.
+			- Added property "KilledBy" to Killable, which returns a reference to the other Killable that dealt lethal damage to it, if any. Resets itself to Null each time it respawns.
+			- Added "If Parent Destroyed?" section below "If Spawner Destroyed" in Killable Despawn & Death Triggered. You can select: Die, Despawn, or Do Nothing (default). This will allow you to make giant ships or fortresses that destroy their limbs when the whole is destroyed or other cool effects!
+
+-V 3.2.3.9  - Fixed gap in some Inspectors' button rows with 0 items.
+			- Added overridable methods to Syncro Spawner so you can subclass and use network Instantiate commands if you like!
+			- Added a #define BOLT_ENGINE in LevelSettings.cs that you can uncomment to use GlobalWaves on Bolt Engine for multiplayer games (requires other changes too, which will be detailed soon).
+			- Added Knockback Damage section to Killable!
+			- Made LevelSettings.WaveRemainingItemCount public in case you want to display something for "enemies remaining".
+			- Added visualization capability in Syncro Spawners! Shows you visually where the things will be spawned (Incremental Settings / Post-nudge, etc) as you tweak. Very useful!
+
+-V 3.2.3.8  - Fixed bug with Console spamming with certain Damage Prefab settings.
+			- Added overridable methods to Killable so you can subclass and use network Instantiate commands if you like!
+			- Added overridable methods to TriggeredSpawner so you can subclass and use network Instantiate commands if you like!
+			- Fixed Playmaker package.
+			- Fixed World Variable inspector. It wasn't showing the correct starting value for float types.
+			- Inspector for Pool Boss now updates counts automatically when things spawn or despawn.
+			- Added drag area for Prefab Pool's Inspector so you can add multiple items at once (by locking Inspector).
+			- Added drag area for Pool Boss' Inspector so you can add multiple items at once (by locking Inspector).
+			- Added "Alpha Sort" button to Prefab Pool' Inspector.
+
+-V 3.2.3.7  - Used ReSharper to fix all warnings and errors in the entire code base. Should not affect any of your settings.
+			- Fixed Killable Respawn bug where it would sometimes spawn you the first time in the wrong position.
+			- Made the Respawn section of Killable not respawn if "Game Is Over" unless you switched Game Over Behavior to "Behave as normal". No more unlimited respawns unless you want it!
+			- Added properties to LevelSettings.cs: SyncroSpawners (returns all Syncro Spawners), and RandomSyncroSpawner, which returns a random spawner.
+			- Fixed Playmaker custom actions package errors.
+			- Fixed Pool Boss so that uGUI elements are parented correctly if you're spawning them. 
+			- Added new methods to Pool Boss to spawn a prefab by name instead of needing a Transform reference.
+			- Added Spawned and Despawned methods to KillableListener
+			- Made it possible to use normal width Inspectors now. "Killer Variables" didn't need to be nearly as wide.
+			- UI makeover showing grouped controls within boxes, just like we just did for Master Audio plugin. Much easier to tell what control goes with what now.
+
+-V 3.2.3.6  - Fixed bug: When you have Damage Prefab settings turned on but didn't specify which prefab, you got an undetailed error. Now it tells you the reason instead.
+			- Added more methods to Pool Boss for information on each prefab (despawned count, spawned count).
+			- Added method to Killable: AddAttackPoints(int);
+			- Added methods to WaveMusicChanger for MuteMusic and UnmuteMusic.
+			- Added 3rd Rotation Type for Pool Boss Spawn custom action to use rotation of the FSM's game object. It's called "Spawner Rotation".
+			- Added a checkbox to "End Early If All Destroyed" for timed waves. It only works when none of the spawners' waves repeat themselves. For example, level 1 wave 2 has 3 spawners. None of the 3 spawners' waves for level 1 wave 2 can repeat. Once everything has been spawned from all 3 spawners, and everything is destroyed or despawned, the wave will end early.
+			- Changed the tracking of Custom Event Receivers for better scaling (separate list per event instead of all together).
+
+-V 3.2.3.5  - Added an optional Unity 4.6 package, containing a duplicate of Example Scene 1, but using uGUI to display World Variables. This package is in the ExampleScenes root folder.
+			- Added "Recycle Oldest" option to Pool Boss. It's a checkbox that's visible when Allow Instantiate More is off. If it's checked, Pool Boss will reuse the oldest active clone of the item you're asking to Spawn if there are no inactivate clones available. Good for decals and other non-particle, non-essential things that won't matter if they disappear.
+			- Added code to Flush the "Cached Player Prefs" every time a new level loads or ends. This should fix the Android problem of not saving World Variables in edge cases.
+ 		    - Fixed bug: If you had another class called Button or Slider (besides Unity GUI ones), TriggeredSpawner script wouldn't compile.
+			- Added safety check to not allow a Custom Event to be fired more than once per frame.
+			- Fixed bug: If you had another class called Text, WorldVariableListener wouldn't compile.
+
+-V 3.2.3.4  - Fixed Killable collision bug that showed Null Reference Exception sometimes.
+
+-V 3.2.3.3  - Added WaitingToDestroyKillable method to KillableListener, so you can play a death animation, etc.
+		    - Added a checkbox to Layer / Tag Filter section in Killable, allowing you to "Ignore Killables I Spawned" (defaults to checked). This is useful to allow you to put all the Player's weapons in a layer, put that layer in the Player's layer filter and only be able to damage *other* players in multiplayer games.
+			- Added uGUI support to Unity 5. Requires beta 17.
+
+-V 3.2.3.2  - Added Unity version detecting code for Unity 4.6 UI for a new "Text" World Variable Listener. Both old and new versions exist in the same file and the correct one is chosen automatically.
+			- Added "Persist Between Scenes" checkbox to LevelWaveSettings in the top section. Defaults to off.
+			- Removed checkbox for Minimal Mode on Triggered Spawners. Now it's always Minimal Mode.
+			- Changed display name of most events in Triggered Spawner & Triggered Despawner to match with the more understable names used in our Master Audio plugin. Should not affect anything you've already made with them.
+			- Added all Unity 4.6 UI events to Triggered Spawner: Slider.onValueChanged, Button.onClick, PointerEnter, PointerExit, PointerDown, PointerUp, Drag, Scroll, UpdateSelected, Select, Deselect, Move, InitializePotentialDrag, BeginDrag, EndDrag, Submit, Cancel
+		    - Added a dropdown in TriggeredSpawner to select between Legacy and uGUI events if you're on Unity 4.6. Then the other won't be shown or work (so many options in the dropdown now!) Note that any Unity 4.6+ users will now default to uGUI, so if you want to use Legacy events, you will have to switch this dropdown back on each component that uses it.
+
+-V 3.2.3.1  - Fixed bug where Killable Listener called DamagePrefabFailedToSpawn when it did in fact spawn, and vice versa.
+			- Fixed bug with Spawn Tracker logging a Null Exception error sometimes.
+			- Note: Please check all your Triggered Spawner waves and change the new Max To Spawn field to equal Min To Spawn, or you will be seeing less things spawn. Added Max To Spawn in Triggered Spawner so it has Min and Max (for random) like Syncro Spawners. 
+			- Added "Sync H.P. Variable" checkbox to Killable, which appears if you are using a World Variable for Start Hit Points. Defaults to off. If you check the box, the World Variable will be updated with the Current Hit Points of that Killable every time they change. This is good for a player Killable to update a Health variable for instance. It is not a good idea to use this on a prefab that has more than one instance in the Scene, because the World Variable value will not be predictable and may jump around.
+			- Made the WorldVariables Inspector refresh automatically when variables change.
+			- Made the Immediate Actions in the Killable Inspector invisible when object is despawned.
+
+-V 3.2.3    - Fixed text on expand / collapse buttons for World Variable Tracker. They were swapped.
+			- Fixed bug with the IsInitialized property in WorldVariableTracker. It caused lots of errors in custom WorldVariableTracker scripts.
+			- Fixed bug where retrigger limit > 100 seconds wouldn't allow a Triggered Spawner wave to happen at all. 
+
+-V 3.2.2.9  - Added a button to Pool Boss so you can now click the yellow "X/10 spawned" text to select them all in the Hierarchy.
+			- Added a public property "SpawnedFromObject" to Killable so other scripts can read the spawner, if any.
+			- Changed confusing icons to actual text buttons (expand all / collapse all / Add).
+			- Added DeathDelayStarted method to Killable Listener, so you can play a death animation or other effect.
+			- Moved game over music settings into Use Global Waves section where it belongs.
+			- Fixed bug: - game over music mode shouldn't do anything when global waves are off. It logged an error when game over is triggered.
+			- Added new methods SpawnOutsidePool and SpawnInPool for PoolBoss. This allows you to specify the parent Transform when the object is spawned.
+			- Removed support for Pool Manager. SpawnUtility.Spawn and Despawn methods are removed and now PoolBoss.cs is used directly. If you are using Core GameKit's Behavior Designer tasks or Playmaker Custom Actions, you will need to reimport those updated packages to compile again.
+			- Added ability to make "Composite Killables". This allows you to, for instance, have a destroyed version of several turrets (or other secondary enemy "parts") on a larger object, like a boss mothership or fortress. Added "Keep Same Parent" checkbox (defaults to true) for Killable Death Prefab to enable this. However, it is a known issue that there is currently no way to respawn the larger object in its original state if one or more of its sub-Killables has changed. Unity does not provide a way to revert prefab instances at runtime. Therefore, you cannot reuse "Composite Killable" objects from the pool if you use this feature and have destroyed or despawned a child. Core GameKit will set the prefab to disabled instead of returning it to the pool when they are destroyed or despawned if they have had any children Killables destroyed or despawned. If they have not, they will be able to respawn and will return to the pool as normal. Make sure to not turn on any despawn checkboxes on the child Killables (like Invisible), because if they despawn before the parent, the parent also will not return to the pool when it dies or despawns. Composite Killables can have multiple levels of sub-Killables. 
+			- Added new example scene for Composite Killables with a 3-level deep Hierarchy of Killables (a boss enemy) which rotates turrets to fire at you. This can be done with zero coding.
+			- Moved Invincibility Settings into its own section in Killable.
+			- Added "Invincible while children alive" checkbox, which will make sure a Composite Killable's top-level object cannot take damage while any of its children Killables still exist.
+			- Add an option under Invincible While Children Alive to disable colliders on the top-level Killable as well while children alive.
+			- Moved Killable and Click To Damage scripts into a new Combat folder instead of Utility folder. They also now appear on the Component -> DarkTonic -> Core GameKit -> Combat menu instead of Utility.
+			- Custom event receivers now have an option to "look at" event (the things they spawned already did, this rotates the spawner as well).
+			- Added ClickToKillOrDamage2D script for 2d games.
+
+-V 3.2.2.8  - Added "Use Death Timer" setting to Killable's Death & Despawn Triggers section. You can add a timer where after X seconds it will either despawn or die (you choose).
+			- Fixed compilation error on Unity 3.5.7.
+			- Added Custom Events feature, which Triggered Spawners can now use. You can make them distance-based, so that all Triggered Spawners within a certain distance will spawn a wave they specify for that event. Can also spawn the wave items looking at the event origin point. This can make enemies attack a player when a custom event happens. Very powerful!
+			- Playmaker custom actions for Triggered Spawners have been updated for Custom Events, please reinstall the custom actions from the new version or you will not be able to compile.
+			- Behavior Designer tasks for Triggered Spawners have been updated for Custom Events, please reinstall the custom actions from the new version or you will not be able to compile.
+			- Added new Example Scene 5 for Custom Events.
+			- Added CustomEventReceived method to Triggered Spawner Listener & Playmaker Listener for Triggered Spawner.
+			- Moved Use Music Settings and Syncro Spawners Off buttons inside "Use Global Waves" section in Level Settings.
+			- Added CoreGameKitFireCustomEvent Playmaker Custom Action.
+
+-V 3.2.2.7  - Some minor adjustments for World Variables for the "high score" variable types in the last version.
+			- Changed code to compile and work with Unity 5 beta!
+
+-V 3.2.2.6  - Added LevelNumber and WaveNumber properties to LevelSettings script. These can be used with the GetProperty method in Playmaker to read the current level and wave number.
+			- Added checks for missing LevelSettings in scripts so there are no Null Exceptions logged if so.
+			- Removed band-aid code for 2D collider Killables to both hurt each other when one dies from a collision. 
+			- Note: to get the bullet above to still work, go open the Physics 2D screen from Edit -> Project Settings -> Physics2D and turn off the checkbox labeled "Delete Stops Callbacks". This is important because Unity 2D collisions are treated differently by default.
+			- No longer calling CoRoutine to destroy Killable unless you have a death delay > 0. Less allocation is always good.
+			- Added "Modifications Allowed" dropdown to World Variables. Choices are Any (the default), Only Increase and Only Decrease. This allows you to control whether a variable can be decreased, increased, or neither. For example you might use Only Increase for a High Score variable.
+			- Fixed "set World Variable" code so that it triggered Game Over if you have set a Game Over value for the variable and also calls the listener event.
+			- Global Waves now should show a row for each spawner in the wave and you can click to go to it.
+
+-V 3.2.2.5  - Fixed performance bug in Triggered Spawner Inspector. It would constantly refresh the Inspector causing frame drops. No longer!
+			- Added Position Settings section to Triggered Spawner. Now you can choose the spawn position (x, y and/or z) to hard-code or read from a World Variable. 
+			- Added Position Settings section to Syncro Spawner. Now you can choose the spawn position (x, y and/or z) to hard-code or read from a World Variable. 
+			- Fixed bug where Triggered Spawner was checking wrong variable for active waves for Enable and Disable waves.
+			- Added HasActiveWaveOfType method to Triggered Spawner, so you can tell if a wave is already spawning and not trigger it to start over again yet.
+			- Added optional Behavior Designer package with 34 tasks - all the Playmaker custom actions are now tasks.
+			- Added new Playmaker Custom Actions: Core Game Kit Triggered Spawner Has Wave Type & Core Game Kit Triggered Spawner End Wave
+
+-V 3.2.2.4  - Added Spawn Offset (Vector3) to Damage Prefab section in Killable so it doesn't have to spawn at exactly the same position as the Killable.
+			- Added EliminationWaveCompleted method to WaveSyncroSpawnerListener & the Playmaker version . This event is sent every time a syncro spawner elimination wave is completed (all repetitions), before it pauses for wave repeat delay.
+			- Added new Playmaker custom actions: Core GameKit Pool Boss Despawn Prefabs Of Type, Core GameKit Pool Boss Kill Prefabs Of Type, Core GameKit Pool Boss Despawn All Prefabs, Core GameKit Pool Boss Kill All Prefabs 
+			- Added Lose event to LevelSettingsListener and the Playmaker listener as well. This fires if game over is reached and you didn't win (waves not all completed or other trigger).
+			- SpawnOneItem() in Syncro Spawner script now returns the spawned transform for reference.
+			- Changed the Playmaker custom action Core Game Kit Syncro Spawner Spawn One so that you can assign the item spawned to a variable.
+			- Added GotoWave(level#, wave#) in Level Settings. Ends the current wave immediately and spawns that level / wave. Can even go to an earlier level or wave!
+			- Added a new Playmaker custom action: Core Game Kit Goto Wave, which does the GotoWave(level#, wave#) action in the bullet above.
+
+-V 3.2.2.3  - Pool Boss now automatically renames spawned prefabs with numbers, like "Enemy (Clone 1)" for easier debugging when the names aren't all the same.
+			- Added max field to each Pool boss item. If you have Allow Instantiate More checked, this field is visible and controls the max that will be allowed to be created. Otherwise it is not used.
+			- Added "Kill all" and "Despawn all" buttons to each Pool Boss item. Kill all will kill all of that game object active in the Scene, if it's Killable (otherwise no effect). Despawn all will return all active prefabs of that type to the Pool Boss and deactivate them.
+			- Added "Kill all" and "Despawn all" buttons to top-level of Pool Boss (and to SpawnUtility.cs if you wish to script them). It's the same as the previous per-item button, but does it for all items at once.
+			- Added new methods to SpawnUtility.cs: KillAllOfPrefab, DespawnAllOfPrefab, KillAllPrefabs, DespawnAllPrefabs.
+
+-V 3.2.2.2  - Changed Core Game Kit Killable Attack Or Hit Points Change (Playmaker custom action) to the name Core Game Kit Killable Attack Or Hit Points Add because the name was not accurate. If you were using this action, you will need to remove it and add again with the new name.
+			- Added new Playmaker Custom Action "Core Game Kit Killable Attack Or Hit Points Mod", which can change the remaining hit points and/or attack points of a Killable.
+			- Added "Wave Order" dropdown within each Level. Choices are "Specified Order" (the default), and "Random Order". If you choose Random, all waves within the Level will be randomly rearranged before the first wave starts. Note that starting on a Custom Start Wave of 1/3 will actually start on whatever the 3rd wave is of Level 1 after randomly ordering the waves.
+		    - Fixed bug where Killables colliding with another KillableChildCollision would not do combat (big bug).
+			- Added demo version of Behavior Designer (with their new Core GameKit integration, which duplicates all the Playmaker custom actions) as an optional package. Their package requires Unity 4.0 or higher. Do not open it on Unity 3, it will crash.
+		    - Changed folder of 3rd party optional packages now we have a few different ones, to reduce clutter.
+
+-V 3.2.2.1  - Added Immediation Actions row of buttons at the top of Killable's Inspector. Actions are: Kill, Despawn and Take 1 Damage. These do not appear or work in edit mode, only while playing.
+	  	    - Fixed bug with rigidbody2d used on Killable script expecting 3d rigidbody to reset velocity.
+
+-V 3.2.2   - Added a new Playmaker Custom Action: "CoreGameKitKillableGetCurrentHitPoints". Does exactly what it sounds like.
+		   - Now resetting the velocity of Killables when they die, if it's a gravity Rigidbody.		
+		   - Changed OnClick and NGUI Click events in Killable to Destroy, not just despawn. So now you get the death prefab and World Variable modifiers.
+		   - Added section labels to Killable to make it more clear which triggers are for despawn and destroy events.
+		   - Fixed bug: Damage prefabs didn't spawn from zero damage on "per hit" Spawn Frequency.
+		   - Fixed bug: Damage prefabs didn't spawn when invincible set on "per hit" Spawn Frequency.
+		   - Added "Damage World Variable Modifiers" section to Killables, which are modifed each time the prefab takes a hit.
+		   - Changed Killable Listener ModifyingWorldVariables method to ModifyingDeathWorldVariables. If you have created any subclasses, you will need to change the method name accordingly. Playmaker action was also updated, so install the optional Playmaker package as well.
+		   - Added ModifyingDamageWorldVariables method to the Killable Listener.
+		   - Added Killable death time delay (for death animation to play). It's under the Death Prefab section.
+		   - Added Respawn Delay to Killables. Now you can have them respawn after X seconds.
+
+-V 3.2.1.9 - Fixed all inspectors so that they don't require a Scene save unless a field is actually changed (most already did this).
+		   - Changed the labels of Killable Attack Points and Hit Points to "Start Attack Points" and "Start Hit Points" so it's more clear.
+		   - Now allowing negative attack points for Killable. That will allow you to increase the health on your player by pickup up drops automatically, and other such things.
+		   - Added "Max Hit Points" to Killable. This value can not be exceeded by gaining HP from collisions with negative hit points Killables.
+ 		   - Note: you will need to check and re-set the value of all your Killables' Attack points because I had to change the variable for negative hit points and they will be lost.
+ 		   - Note: you will need to install the latest Master Audio plugin as well if you use that to get it to compile again.
+ 		   - Note: you will need to delete and re-install the Core GameKit Playmaker package as well if you use that to get it to compile again.
+		   - Moved the Taking Damage listener point into the TakeDamage method in Killable. That method virtual and can use overrides.
+		   - Added a DamagePrevented method to KillableListener. This is called when your Killable gets hit while invincible.
+		   - Added an overridable method "IsInvincible" to Killable so you can subclass it and add your own custom logic if you like.
+		   - Added an overridable method "DetermineScenario" to Killable so you can subclass it and add your own custom logic if you like.
+		   - Added "band-aid" code to get around the new Unity 4.5 2D collision despawn bug. It has been reported fixed in the next Unity version but you don't have to wait now.
+		   - Bug fix: Keep Velocity variable for Death Prefab in Killable wasn't checked. It always kept the velocity.
+		   - Added "follow player" checkbox to Player Spawner. Previously it always respawned you exactly where you died. Now you can choose whether this happens or not. This defaults to off, which is the opposite of the old behavior.
+		   - Added "Update Spawn Position" method to Player Spawner. This way you can update the spawn position based on checkpoints or things like that.
+		   - Player Spawner now works if you already have a Player in the Scene, and won't spawn another one if you do until the player dies.
+
+-V 3.2.1.8 - Added Respawn section to Killable. You can choose to have the Killable respawn in its original spawn position instead of despawning when it dies - a set number of times, or infinite.
+		   - Bug fix: Now if Killable records zero point damage, it doesn't register on the Retrigger time or frame.
+		   - Bug fix: Setting Int or Float World Variable value directly didn't correct for negative values and won't fire "is game over". Now it does.
+		   - Bug fix: Race condition in Killable sometimes wouldn't kill Killable when its spawner was destroyed if you had turned that setting on.
+		   - Added lazy lookup of the cached Transform property in Killable to prevent errors in race conditions.
+		   - Added more overridable methods to Killable for subclasses, including DespawnThis, Despawned, and a cached lazy-lookup property of the Transform component.
+		   - Added optional "parent Game Object" to Pool Boss Spawn custom action, which will parent the spawned object under a parent Game Object you specify.
+		   - Added "end wave when opposite event occurs" checkboxes (that's not what they really say, they are labeled more coherently) for Triggered Spawner events, so for example: you can have the "visible" event stop when "invisible" triggers, regardless of whether you have an event configured for invisible.
+		   - Attention: your custom start level / wave settings will be wiped out from this version. Now we have made the custom start level / wave option in Level Settings able to use World Variables now. 		   
+		   
+-V 3.2.1.7 - Updated Pool Boss Spawn Playmaker Custom Action with more options.
+
+-V 3.2.1.6 - Attention: make sure you delete the entire Core GameKit folder before updating so this next part will import properly. Moved these files into the "don't include in build" folder: killerwavespawnwidget.fbx, killerwavewidgettexture materials.
+		   - Fixed WaveOffset to use rotation instead of World Space.
+		   - Greatly improved CPU load of all custom inspectors. They were needlessly redrawing constantly.
+		   - Added EndWave method to TriggeredSpawners. This take an EventType parameter and will end the currently spawning wave of the same Event Type, if any. 
+		   - New Triggered Spawner Listener method "WaveEndedEarly" for the above bullet.
+		   - Added ability to propagate the EndWave call to Triggered Spawners into their child spawners (respects the same Trigger Source field that "propagate events" uses).
+		   - New Triggered Spawner Listener method "PropagatedWaveEndedEarly" for the above bullet.
+ 
+-V 3.2.1.5 - Changed "no copies left to spawn" message in Pool Boss to a warning instead of error logged.
+		   - Redid the code for Timed Despawner. Not it is many times more efficient, no script is run during Update.
+   		   - Added methods and properties to Pool Boss: PrefabIsInPool, PrefabCount, 
+   		   - Note: Please delete your Core GameKit custom actions folder before importing the newest one, if you unpacked the optional included Playmaker package.
+   		   - Added Playmaker custom actions for Pool Boss: Spawn, Despawn (renamed 	Core GameKit Despawn action), PrefabCount, ItemIsInPool, ItemTotalCount, ItemDespawnedCount, ItemSpawnedCount
+
+-V 3.2.1.4 - Added ClickToKillOrDamage script for mouse clicking (or finger tapping) to kill or damage Killables.
+		   - Changed example scene #4 to have no player. You click to damage the enemies.
+		   - Added "Wave Completion %" field to waves in Syncro Spawners that are during an Elimination Global wave. Defaults to 100. You can lower this to make a wave complete at X% destroyed so the wave can repeat or end..
+
+-V 3.2.1.3 - Fixed Playmaker package for compile errors.
+
+-V 3.2.1.2 - Note: please delete the CoreGameKit/Sources/Textures folder (or delete the entire CoreGameKit folder) before upgrading to this version. The textures are now located elsewhere so they don't take up room in builds.
+		   - Fixed bug: Triggered Spawner's visible event only worked the first time.
+		   - Made all CoRoutines perform better with up front YieldInstruction creation.
+		   - Fixed some editor errors when LevelSettings.cs is not in the Scene.
+		   - Fixed an error with the NGUI World Variable Listener in edit mode.
+		   - Made the main coroutine in LevelSettings happen every .1 seconds instead of the old .3 seconds. This will allow faster wave transitioning.
+
+-V 3.2.1.1 - Added new Killable HP Death Mode "Collision or Trigger". This will cause the Killable to be destroyed even when invincible when it hits things. Useful for projectiles so they don't go through objects if they're both invincible and triggers.
+		   - Fixed bug where Killable would instantly die on spawn if not spawned from a spawner when "if spawner destroyed" set to destroy or die. This no longer happens.
+
+-V 3.2.1 - Added "mouseDown" despawn trigger to Killables.
+		 - Added "Invincible On Spawn" checkbox to Killable and "Invincible Time" setting under that. Now you can make Killables not take any damage for X seconds when they first spawn.
+		 - Added method: Killable.TemporaryInvincibility(float seconds) to make the Killable invincible for X seconds. You could use this for a fighting game and make the character invincible during the first part of their attack.
+		 - Added "Auto start waves" checkbox to LevelSettings. Defaults to on. If you uncheck it, the first wave won't start (technically it's paused), until you call LevelSettings.UnpauseWave();
+
+-V 3.2 - Added "every frame" checkboxes to all Playmaker custom actions where it makes sense to have them.
+		 - Added a parameter "hasWon" to LevelSettings Listener event GameOver so you can tell whether the player won or not (both Win and GameOver events are fired when you complete all Syncro waves).
+		 - Fixed bug where Pool Boss would let you double despawn a prefab, making it disappear mysteriously later when re-used by the pool.
+		 - Added Wave Restart Mode to Level Settings. Choices are Leave Spawned, Despawn Spawned and Destroy Spawned. Destroy Spawned only works on Killables and calls their Destroy method (which spawns death prefabs etc).
+		 - Fixed bug where LevelSettings.RestartWave would throw an error when no waves are set up.
+
+-V 3.1.9.1 - Fixed build errors in Windows 8.
+
+-V 3.1.9 - Fixed player projectile. After pooling, gravity was moving them out of 2d collision space on the Y axis.
+		 - Added Playmaker Custom Actions to get the value of a World Variable. 2 because 2 types (int and float).
+		 - Added optional max value setting for World Variables. This way you can prevent Health from going over 100 for instance.
+
+-V 3.1.8 - Added Death Prefab Offset (vector3) field to Killable. Now you can move the death prefab a certain distance away from the one dying with this.
+
+-V 3.1.7 - Added Spawn Layer Mode & Spawn Tag Mode settings to both spawner types. Choices are UseSpawnPrefabSettings (default), UseSpawnerSettings, and Custom. Custom lets you specify a layer and / or tag to apply to all prefabs spawned by the spawner.
+	 - Added RestartWave for Syncro Spawners method in LevelSettings. It will reset the repeat count to zero as well for spawners that use that wave. Wave is unpaused as well if it was paused.
+	 - Added a LevelSettings Listener method for WaveRestarted.
+	 - Added Playmaker Custom Action for RestartWave.
+	 - Added Playmaker Listeners for each of the normal Core GameKit Listeners. These allow you to fire off an event in a Playmaker FSM on the same game object as the Playmaker Listener. You get to select the FSM and event from dropdowns. Couldn't be simpler!
+	 - All Listeners now hook themselves up automatically if you put them on a GameObject with a matching source. i.e. Putting a Killable Listener onto a GameObject with a Killable will hook up the Listener automatically.
+
+-V 3.1.6 - Fixed Killable Child Visibility script so it will work when Instantiating in Awake inside Pool Boss.
+		 - Fixed Killable Child Collision script so it will work when Instantiating in Awake inside Pool Boss.
+  	 	 - Updated Playmaker Custom Actions to inclide a TooltipAttribute so they will still work on Unity 4.5.
+
+-V 3.1.5 - Instantiating LevelWaveSettings prefab now places it at World position 0,0,0.
+		 - Refixed Killable Child Visibility.
+
+-V 3.1.1 - Fixed all Inspector errors when selecting the LevelWaveSettings prefab in the Project View and disabled the Inspectors there, telling you to select the one in the Scene.
+	 - Added a button to Instantiate a LevelWaveSettings prefab from the main CoreGameKit one when you select it in Project View. That way there will be no prefab connection to the main one and you will not lose data when upgrading.
+
+-V 3.1  - Performance upgrade: Changed all repeatedly called CoRoutines into looping CoRoutines.
+        - Added wave offset field to Triggered Spawners and Syncro Spawners. This is a Vector3 field and is added to the Spawner position prior to any Incremental Settings and Post-Spawn Nudge Settings to choose a custom spawn location.
+        - Added "disable event after" checkbox to Triggered Spawner events. That way you can make it only work once.
+	    - Added controls to Killable Child Visibility script to despawn the Killable if not visible too long - same as Killable controls.	
+
+-V 3.0.1 - Fixed example scene 1 because the waves were turned off. Now on.
+
+-V 3.0.0 - Breaking Change: Rename your "KillerWaves" folder under the DarkTonic folder to "CoreGameKit" before upgrading.
+	 - Breaking Change: Playmaker custom actions have all been renamed, so don't re-import the Playmaker package if you don't want to lose all your old Killer Waves custom actions.
+	 - Breaking Change (if anyone was using it). World Variable Resetter script removed. You now use the normal LevelWaveSettings prefab on a main menu screen instead to do what it did. The Readme section has been updated with instructions on how to do this. It's less confusing this way and less to learn.
+     - Updated UI with buttons and collapsible sections similar to Master Audio. Cleaner and more polished now.
+	 - Added "KillerInt" support to Killables. Now for any integer value in that inspector, you can either specify an integer or tell it to use a World Variable value. Warning, this will delete any non-default values you had in these fields.		
+	 - Added "KillerFloat" support to Killables. Now for any float value in that inspector, you can either specify an integer or tell it to use a World Variable value. Warning, this will delete any non-default values you had in these fields.		
+	 - All variable modifier collections can now specify another variable as well as a number.
+	 - These Killer Int / Float and total refactoring will mean that you will lose almost every integer and float value you have specified, so it's best to start from scratch after upgrading, or re-enter all variable modifiers and values. I give very detailed errors on invalid World Variables specified everywhere upon clicking Play.
+	 - Added dropdown for variable modifications, choices are add (the default), set, subtract and multiply.
+	 - Fixed compile errors on Unity 4.0 - 4.2 from Unity 4.3 2D additions
+		 
+	 - Fixed bug where World Variable Listeners didn't show the initial value.
+	 - Fixed bug where elimination waves would repeat endlessly when repeat was on.
+	 - Fixed bug where elimination waves set to repeat until a World Variable is above / below a certain value would instead only do the "number of repetitions" you specified before switching to that mode.
+	 - Fixed bug where 1-2 prefabs would spawn from a disabled syncro spawner.
+	 - Now clicking on the Core GameKit graphic banner in any Inspector will take you to to the LevelWaveSettings prefab in the Scene.
+
+	 - Added "keep center" checkbox for spawner Incremental Settings. That will make sure half go to the left and half to the right.
+	 - Removed Playmaker Custom Action KillerWavesWorldVariableChangeValue. Please delete this from your project if you already opened the Playmaker optional package.
+	 - In its place, we added 6 Playmaker Custom Actions. KillerWavesVariableFloatSet, FloatAdd, FloatMultiply, and the same 3 for Integer variables.
+	 - Added Spawn Rotation Mode to both spawner types (Killable already had it). Options are: use prefab rotation, use spawner rotation and custom rotation. Note that any random rotation options in the spawner will happen after the spawn rotation mode is used as a root.
+	 - Added wave repeat bonus variable modifiers section to syncro spawners.
+	 - Added wave spawn bonus variable modifiers section to Triggered Spawners. Optionally you can have each repetition of the wave (in the repeat section) trigger the modifiers again.
+	 
+	 - Modified World Variable listener to support float and int. Added fields for "use commas" and number of decimal places to display.
+
+	 - Updated NGUI optional package with World Variable changes.
+	 - Prefab Pools now show during runtime the number of each item still in the pool.
+	 - Added ability to change World Variable value during runtime.
+	 - Added list of Syncro Spawners with settings icons on them in the Level Settings prefab.
+
+	 - Added list of Prefab Pools and World Variables with settings icons in the Level Settings prefab.
+	 - Added "Pool Boss" section under LevelSettings for PoolManager - type object pooling (this avoids Instantiate and Destroy calls). Uses OnSpawned and OnDespawned events, same as PoolManager!
+	 - Added Character Controller support to Killable.
+	 - Fixed endless Inspector bug in some configurations in LevelSettings prefab.
+
+-V 2.7.8 - Breaking change: Added a container folder "DarkTonic" for the top-level Killer Waves folder. This way we're able to avoid duplicate class errors from UndoHelper if you use more than one of our products. When upgrading to this version, please delete the Killer Waves folder first or create a "DarkTonic" folder in Assets and move the Killer Waves folder into it before upgrading.
+		 
+	 - Fixed false Inspector error.
+	 - Fixed bug where co-routine for "despawn when not visible too long" didn't work after re-spawning the same object.
+		 
+	 - Find & Select buttons for Prefab Pools now find Killables & Triggered Spawners as well as Syncro Spawners.
+	 - Added "Invincible" checkbox to Killable. This makes the Killable not take any damage from other Killables while checked. Good for temporary invincibility.
+		 - Added "If Spawner Destroyed" modes to Killable in the Despawn Triggers section. Choices are Do Nothing, Despawn and Die. This enables "mothership-powered objects" that die without whatever spawned it.
+
+
+-V 2.7.7 - Added 2D collider and 2D trigger support to Triggered Despawner script.
+
+	 - Added support for 2d collisions and Triggers to Triggered Spawners.
+	 - Added nicer error if LevelSettings not in Scene.
+	 - Added "Use Global Waves" checkbox in LevelSettings. You can turn this off if you don't need Syncro Spawners and then you don't have to create long fake waves so that Triggered Spawners don't shut off after your Global Waves end. There was always the Game Over Behavior which could get around this, but that's not necessary any longer.
+
+-V 2.7.6 - Added 2D collider and 2D trigger support to Killable! Tt "just works". No extra settings.
+	 - Added full Undo support for Unity 4.3. Unity 3.5.7 users can still use the package, just no undo.
+
+-V 2.7.5 - Moved PlayerSpawner code into Start instead of Awake so it would work with Pool Manager.
+		 
+	 - Added KillableChildCollision class (similar to KillableChildVisibility) to trigger the parent's collision events from child prefabs.
+		 
+	 - Added arrows to syncro spawners to re-order waves visually.
+
+
+
+-V 2.7.4 - Made WebPlayer mode conditionally omit the Cached Player Prefs part at compile-time because it didn't work.
+
+
+-V 2.7.3 - Added multiple "scenarios" (sets) of World Variable Modifiers. The "Destroyed" scenario is the default. If you want to use other scenarios, you can specify the scenario name in the Playmaker Killable Destroy Custom Action, call the DestroyKillable method yourself from code, or make a subclass of the Killable class and override the DestroyKillable method to change the scenario name parameter based on your own logic.
+	 - Added Killable Despawn and Killable Destroy, Playmaker Custom Actions.
+	 - Added DestroyingKillable event to Killable Listener. You can take action before the Killable is destroyed.
+	 
+	 - Added DeterminingScenario event to Killable Listener, so you can add logic to use a different Scenario (set of World Variable modifiers).
+	 - Made Inspector classes work for subclasses of Killable, Triggered Spawner, Syncro Spawner, Triggered Despawner (only works in Unity 4).
+
+	 - Fixed bug where elimination waves would always have 15 repetitions or more regardless of what you specified.
+
+-V 2.7.2 - Added setting to "use music" or not. Switch this off if you don't want Killer Waves to require WaveMusicChanger script.
+
+	 - Changed warnings to appear underneath for W.V. Ranges so you can actually continue typing when they show up.
+	 - Added spawn limit and time limit to to repeat sections of both spawner types. This way you can increase the # of items and time but not pass the limits.
+
+-V 2.7.1 - Now showing current world variable values during runtime in Inspector.
+	 - To be consistent, changed "Active item mode" and "Active spawner mode" both to "Active mode" in Inspectors. 
+	 - Fixed bug where music volume didn't work. 
+	 - Fixed bug where switching a previously "number of repetitions" waves didn't repeat enough times when switched to Timed waves.
+	 - Added Wave Repeat spawn increase and time increase fields to progressively modify all repeated waves on Triggered Spawners.
+	 - Add non-elimination repeat options to timed spawner waves with "Timed Repeat Mode". Kept old "elimination type" as well.
+
+-V 2.7   - Added KillableChildVisibility script for cases when your renderer is in a child object of Killable. That way we can get the visible and invisible events to work properly still.
+	 - Added "Log Events" checkbox in Killable Inspector so you can find out why collisions aren't registering when it happens.
+	 - Added Active Mode dropdown for Triggered Spawners. Choices are Always, Never, "World Variable in range" and "World Variable outside range".
+	 - Removed "Active" checkbox for Syncro Spawners. Replaced it with Active Mode dropdown the same as Triggered Spawners got above.
+	 - Added Wave name to Inspector. For display and identification purposes.
+	 - Added display of Spawner count using each wave in Level Settings Inspector.
+	 - Added "Wave Ended" event to Level Settings Listener.
+	 
+	 - Added Wave Completion Bonuses section so you can add to Score or any other World Variable when a wave is completed normally.
+
+
+-V 2.6.9 - Added Skip Wave Type to Waves in Level Settings. You can choose None, Always, IfWorldVariableValueAbove or IfWorldVariableValueBelow and add WorldVariable conditions to skip the wave.
+		 	 - Added Wave Skipped event in LevelSettingsListener.
+	 - Removed "Active" checkbox on Prefab Pool Items. Added Active Item Mode instead. Choices are Always (default), Never, IfWorldVariableInsideRange & IfWorldVariableOutsideRange. This lets you control which items are in the Prefab Pool based on XP, Score, etc. They are re-evaluated each time the Prefab Pool re-fills.
+	 - Added Custom Start Wave setting in Level Settings so you can start playing on the level and wave you select. You can toggle this on and off. Great for testing higher waves!
+
+	 
+		 
+-V 2.6.8 - Removed "exhaustive list" checkbox for Prefab Pools when non-random. Only applies to random.
+	
+	 - Added up and down arrows for Prefab Pool items, for organizational purposes.
+
+
+-V 2.6.7 - Fixed up Owner properties of Playmaker custom actions. They had bad code.
+
+	 - Added PauseWave and UnpauseWave methods to LevelSettings. Added Playmaker custom actions for these as well.
+	 - Added Pause Wave Behavior for all spawners, so you can selectively choose to ignore the wave pause setting if you want.
+	 - Fixed bug where Death Prefab of Killable would use the same prefab in Prefab Pool instead of picking a new one each time.
+	 - Added the ability to specify a "no prefab" item in Prefab Pools, to enable "spawn nothing" moments in spawners.
+
+-V 2.6.6 - Exposed "TakeDamage" method in Killable.
+	 - Added Playmaker Custom Action to force the current Wave to end.
+ 	 - Modified Playmaker Custom Action "KillableAttackOrHitPointsChange" to add to Current Hit Points as well so it can kill the Killable.
+	 - Added Playmaker Custom Action "KillableTakeDamage" to inflict damage on a Killable.
+	 - Added Player Spawner script. Handles spawning, respawning, and an optional spawn particle automatically.
+
+-V 2.6.5 - Added Repeat Mode to syncro & triggered spawners (number of repetitions and endless are the choices).
+
+	 - Added Repeat Mode "Until World Variable Above" and "Until World Variable Below" to both spawner types. Both allow infinite wave repetition until 1 or more World Variables reach target values you set in the Inspector.
+
+
+
+
+-V 2.6.4 - Added Killable despawn mode "None" so your prefab won't die automatically at zero hit points. You can manually kill or it whatever you want to do now.
+		 
+	 - Made Killable hit points not able to go below zero.
+		 
+	 - Added "current hit points" to the Killable Inspector so you can see and manipulate the current HP.
+
+
+-V 2.6.3 - Redid the way Prefab Pools are referenced due to a Unity 4 bug that won't "remember them" after you apply changes to a prefab. Unity 3.X worked fine.
+		
+	 - Fixed Inspector bug where it would forget new waves you create when you pressed Play in the editor.
+
+-V 2.6.2 - Added Time remaining in current wave property, which transmits to the LevelSettingsListener every time the number changes (seconds).
+	 - Added "remaining active spawned items in wave" for repeat and elimination waves. It transmits to LevelSettingsListener every time the number changes.
+	 - Renamed trigger event to Trigger Enter
+	 - Added "Trigger Exit" event for Triggered Despawners and Triggered Spawners
+	 - Added a KillableListener subclass example script to Example Scene 1. It's on the Main Camera, listening to the Player prefab's Killable script.
+	 - Added a "spawn one" Playmaker custom action for Syncro Spawners. It will spawn one regardless of speed settings as long as its during a wave the spawner has settings for.
+	 - Added a "Killer Waves Despawn" custom action.
+	 - Fixed bug in first 2 Playmaker actions for "Owner" variable.
+
+
+-V 2.6.1 - Added ability to specify 0 attack points for Killable (for pickup non-damage items like coins).
+
+-V 2.6  - Added Playmaker custom actions:
+	1) Killable Change Attack Or Hit Points
+	2) World Variable Change Value
+
+-V 2.5  - Added PlayerPrefs caching system to massively instease WorldVariable performance on mobile devices.
+	- Added NGUI_KillerWaves package inside the main package for NGUI users.
+
+-V 2.4  - Added random distance to the spawn distance limiter. Now you can specify a min distance that a random range of 30-50 instead of a fixed distance. 
+	   
+	- Added extra settings to the repeat wave section. Now you can make the wave larger (or smaller) with each repeat. You can also make each wave "time to spawn all" shorter or longer.
+
+
+
+-V 2.3  - Added limitations for random angle, to enable Fruit Ninja fruit spawning
+	
+	- Added "EndWave" method for LevelSettings, to enable countdown abort for tower defense games.
+
+
+
+-V 2.2  - Performance fixes for elimination wave completion checking. Now event-based so it scales MUCH better.
+
+
+
+-V 2.1.1 - Fixed bug for "not visible for time" mode on Killable.
+	
+	- Fixed bug for warning when having no music during waves.
+	
+	- Fixed VS-unfriendly yield returns.
+
+
+
+-V 2.1 - Killable Death Prefab now can pull from Prefab Pools.
+	
+	- Killable now has Damage prefab. Spawn something when taking damage or x of the prefab for every Y hit points lost.
+	
+	- Random rotation checkboxes for damage prefab. 
+	
+	- Added minimum distance limiter for syncro spawners. All spawned items must be min distance away from spawner before another will be spawned.
+
+
+
+-V 2.0  - Added OnEnable / OnDisable events
+	
+	- Added "Despawn this" on some events for Triggered Spawners.
+	
+	- Added 2 Code-triggered Event types for Triggered Spawners.
+	
+	- Added retrigger limiters to Triggered Spawners so you can't repeat-trigger a wave continually. You can specify frames or time.
+	
+	- Added Killable script to easily allow multiple-hit targets, auto-despawning, explosions, prefab replacement and more!
+	
+	- Added OnClick event for NGUI to Triggered Spawners and Triggered Despawners.
+	
+	- Added minimal mode to triggered spawners to improve the increasingly busy UI.
+	
+	- Added "World variables" like health, score, etc that Killables can affect when destroyed. Stats are customizable by the user and carryable (or not) from scene to scene.
+	
+	- Added World Variable listeners you can hook into NGUI or whatever you like.
+	
+	- Added "game over behavior" to allow spawners and killables to shut off at game over (or not).
+	
+	- Added Child spawners (it's a settings of triggered spawners), which can be called by parent spawner. Choice to propogate events to children, any number of levels deep.
+	
+	- Added 9 listener classes for Syncro Spawners, Triggered Spawners & Despawners, Level Settings, Killable, and more classes, so you can hook up custom code when things happen like wave start, wave end, item spawned etc. Each listener can be subclassed for your particular needs.
+
+
+
+-V 1.4.1 - Added "spawn order" dropdown modes for prefab pools. Can be random (as originally designed, or original pool order).
+
+
+
+-V 1.4  - Added "is enabled" checkbox for spawners (can also be changed through scripts)
+	
+	- Added "Game Over Music" section at top of Level Settings. Your existing music settings will probably be lost, please check them after updating to this version.
+	
+	- Added "Music Fade Time" for Silence music mode to fade previous music out over time.
+	- Fixed bug where the same prefab would be spawned for each item in the same frame, even in a prefab pool.
+	
+	- Added new triggered spawner script to trigger waves from any prefab during collision, trigger, becameVisible, becameInvisible, spawn, despawn, mouse click and more.
+	- Added ParticleDespawner
+	
+	- Add repeat wave time to triggered spawners, for projectile waves, etc.
+	
+	- Added Triggered Despawner script
+	
+	- Added Timed Despawner script
+
+-V 1.3  
+	- Added Incremental Settings to create "space invaders" type waves with spacing or rotation.
+	
+	- Now allowing elimination waves to repeat, and Added new field "# of repetitions" for elimination waves.
+	
+	- Fixed "down arrow" bug in inspectors.
+	
+	- Added Prefab Pools for random weighted spawn types.
+	
+	- Spawner script changed so that multiple items can be spawners per frame if "time to spawn entire wave" is very small.
+	
+	- Added Post-Spawn Nudge settings so you can create rings of enemies and other cool patterns.
+	
+	- Enabled 0 Time to spawn whole wave, which means the entire wave will spawn in one frame.
+
+
+-V 1.2 - Released 1/31/2013 on the Asset Store

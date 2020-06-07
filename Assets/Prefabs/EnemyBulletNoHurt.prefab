@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 1757103974}
   - component: {fileID: 4272233605228691308}
   m_Layer: 9
-  m_Name: EnemyBullet2
+  m_Name: EnemyBulletNoHurt
   m_TagString: EnemyBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -130,6 +130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   time: 2000
+  pooled: 0
 --- !u!114 &1757103970
 MonoBehaviour:
   m_ObjectHideFlags: 0

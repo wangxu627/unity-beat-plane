@@ -68,7 +68,7 @@ GameObject:
   - component: {fileID: 2919430504021379855}
   - component: {fileID: 8822208066450742885}
   m_Layer: 9
-  m_Name: Enemy1Random
+  m_Name: EnemyRandom
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -124,7 +124,7 @@ MonoBehaviour:
   dieParticlePrefab: {fileID: 5273407927567983555, guid: 53161eed649fdba4a991dbd5fb583516,
     type: 3}
   allBetweenDelay: 0.2
-  allAutoReleaseTime: 4
+  allAutoReleaseTime: 7
 --- !u!114 &8662558828105954975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,7 +190,6 @@ MonoBehaviour:
   DelayBeforeDestruction: 0
   PointsWhenDestroyed: 0
   RespawnAtInitialLocation: 0
-  DisableControllerOnDeath: 1
   DisableModelOnDeath: 1
   DisableCollisionsOnDeath: 1
 --- !u!1 &8662558828506020394

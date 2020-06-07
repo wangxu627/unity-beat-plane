@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4682320409787465551}
   - component: {fileID: 654758289978242725}
   - component: {fileID: 6257498676943989849}
+  - component: {fileID: -255804753740168644}
   m_Layer: 10
   m_Name: Bullet
   m_TagString: PlayerBullet
@@ -70,12 +71,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4650643888702450640}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 69a93aa22e480e840a09a06ce5e10e5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 5
+  time: 2
+  pooled: 1
 --- !u!114 &6257498676943989849
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89,6 +91,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hit: {fileID: 3118640549606182315, guid: 6b0bf3db98dbff943a3d600ea567c4b5, type: 3}
+--- !u!114 &-255804753740168644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4650643888702450640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 715655405f7792442b10a3dc4c63ddbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolItemName: Bullet
 --- !u!1 &7152425367334255247
 GameObject:
   m_ObjectHideFlags: 0

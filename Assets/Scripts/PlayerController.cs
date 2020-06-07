@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DarkTonic.CoreGameKit;
+using Papae.UnitySDK.Managers;
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,8 +12,9 @@ public class PlayerController : MonoBehaviour
         Player
     } 
     public ControlMode controlMode = ControlMode.Player;
-    public GameObject playerDieParticlePrefab;
-    public GameObject playerHitParticlePrefab;
+    public Transform playerDieParticlePrefab;
+    public Transform playerHitParticlePrefab;
+    public GameObject reviveParticle;
     private PlayerMoveController moveController;
     private PlayerRotationMouseController rotationMouseController;
     private PlayerRotationJoystickController rotationJoystickController;
@@ -36,19 +39,48 @@ public class PlayerController : MonoBehaviour
     public void Initialization()
     {
         health.Revive();
-        rotationMouseController.ResetRotation();
+        reviveParticle.SetActive(false);
+        if(InputManager.Instance.controllerType == InputManager.ControllerType.Mouse)
+        {
+            rotationMouseController.ResetRotation();
+        }
+        else
+        {
+            rotationJoystickController.ResetRotation();
+        }
     }
+
+    public void Revive()
+    {
+        gameObject.SetActive(true);
+        reviveParticle.SetActive(true);
+        health.Revive();
+        health.DamageDisabled();
+
+        float immortalTime = 3.0f;
+        StartCoroutine(health.DamageEnabled(immortalTime));
+        StartCoroutine(Utils.DelayCall(() => {
+            reviveParticle.SetActive(false);
+        }, immortalTime));
+    }
+
     public void OnHit()
     {
-        Instantiate(playerHitParticlePrefab, transform.position, Quaternion.identity);
+        // Instantiate(playerHitParticlePrefab, transform.position, Quaternion.identity);
+        Transform trans = PoolBoss.SpawnInPool(playerHitParticlePrefab, transform.position, Quaternion.identity);
+        trans.gameObject.GetComponent<AutoDestroy>().AutoDestroyMe();
     }
 
     public void OnDeath()
     {
-        Instantiate(playerDieParticlePrefab, transform.position, Quaternion.identity);
-        gameObject.SetActive(false);
+        // Instantiate(playerDieParticlePrefab, transform.position, Quaternion.identity);
+        Transform trans = PoolBoss.SpawnInPool(playerDieParticlePrefab, transform.position, Quaternion.identity);
+        trans.gameObject.GetComponent<AutoDestroy>().AutoDestroyMe();
 
+        gameObject.SetActive(false);
         GameManager.Instance.ChangeGameState(GameManager.GameState.Failed);
+
+        AudioManager.Instance.PlayOneShot(AudioManager.Instance.GetClipFromPlaylist("Player Explosion"));
     }
 
     public void SetControlMode(ControlMode newMode)
@@ -68,20 +100,32 @@ public class PlayerController : MonoBehaviour
     private void ChangeToAIMode()
     {
         moveController.enabled = false;
-        rotationMouseController.enabled = false;
-        // rotationJoystickController.enabled = false;
         simpleFireController.enabled = false;
         restain.enabled = false;
         health.enabled = false;
+        if(rotationMouseController)
+        {
+            rotationMouseController.enabled = false;
+        }
+        if(rotationJoystickController)
+        {
+            rotationJoystickController.enabled = false;
+        }
     }
 
     private void ChangeToPlayerMode()
     {
         moveController.enabled = true;
-        rotationMouseController.enabled = true;
-        // rotationJoystickController.enabled = true;
         simpleFireController.enabled = true;
         restain.enabled = true;
         health.enabled = true;
+        if(rotationMouseController)
+        {
+            rotationMouseController.enabled = true;
+        }
+        if(rotationJoystickController)
+        {
+            rotationJoystickController.enabled = true;
+        }
     }
 }

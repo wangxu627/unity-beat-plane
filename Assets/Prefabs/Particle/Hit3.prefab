@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 5273407927567983565}
   - component: {fileID: 5273407927567983564}
   - component: {fileID: -5444759294101200617}
+  - component: {fileID: 2655028269521649549}
+  - component: {fileID: 4608984162467815537}
   m_Layer: 0
   m_Name: Hit3
   m_TagString: Untagged
@@ -4823,12 +4825,42 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5273407927567983555}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 69a93aa22e480e840a09a06ce5e10e5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 5
+  time: 0.5
+  pooled: 1
+--- !u!114 &2655028269521649549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5273407927567983555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 715655405f7792442b10a3dc4c63ddbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolItemName: Hit3
+--- !u!114 &4608984162467815537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5273407927567983555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a9a227913bcf6d4eadfcf8266d928d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particleSystemRenderer: {fileID: 5273407929329530488}
+  materials:
+  - {fileID: 2100000, guid: 9b72080070217b84da29b6546ee72e15, type: 2}
+  - {fileID: 2100000, guid: 8961aa3c311fc9e42b16a09ddc6b5f90, type: 2}
 --- !u!1 &5273407928243363432
 GameObject:
   m_ObjectHideFlags: 0
@@ -14439,6 +14471,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ImpactShape
       objectReference: {fileID: 0}
+    - target: {fileID: 2323852430977726955, guid: 3b22c01bf0496bf4a96fe85175539318,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2323852430977726957, guid: 3b22c01bf0496bf4a96fe85175539318,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -14449,6 +14486,12 @@ PrefabInstance:
 --- !u!4 &5273407929329530495 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2323852430977726954, guid: 3b22c01bf0496bf4a96fe85175539318,
+    type: 3}
+  m_PrefabInstance: {fileID: 7570854349391318933}
+  m_PrefabAsset: {fileID: 0}
+--- !u!199 &5273407929329530488 stripped
+ParticleSystemRenderer:
+  m_CorrespondingSourceObject: {fileID: 2323852430977726957, guid: 3b22c01bf0496bf4a96fe85175539318,
     type: 3}
   m_PrefabInstance: {fileID: 7570854349391318933}
   m_PrefabAsset: {fileID: 0}

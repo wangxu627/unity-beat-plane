@@ -13,14 +13,25 @@ public class InputManager : Singleton<InputManager>
 
     public ControllerType controllerType;
     public GameObject virtualJoystickUI;
-    // Start is called before the first frame update
-
     /// <summary>
     /// Awake is called when the script instance is being loaded.
     /// </summary>
-    void Awake()
+    protected override void Awake()
     {
-        virtualJoystickUI.active = (controllerType == ControllerType.VirtualJoystick);
+        base.Awake();
+        if(controllerType != ControllerType.VirtualJoystick)
+        {
+            virtualJoystickUI.SetActive(false);
+        }
+    }
+
+    public void SetVirutalJoystickActive(bool active)
+    {
+        if(controllerType != ControllerType.VirtualJoystick)
+        {
+            return;
+        }
+        virtualJoystickUI.SetActive(active);
     }
 
 }

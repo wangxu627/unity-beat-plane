@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using Papae.UnitySDK.Managers;
 
 public class EnemyController : MonoBehaviour
 {
@@ -28,13 +29,6 @@ public class EnemyController : MonoBehaviour
         nameText = Utils.FindChildByName(gameObject, "NameText");
         textMeshPro = nameText.GetComponent<TextMeshPro>();
         textmeshproRenderer = textMeshPro.GetComponent<MeshRenderer>();
-
-        CustomBulletShot[] shots = GetComponentsInChildren<CustomBulletShot>();
-        foreach(var shot in shots)
-        {
-            shot._BetweenDelay = allBetweenDelay;
-            shot._AutoReleaseTime = allAutoReleaseTime;
-        }
     }
 
     void Start() {
@@ -72,6 +66,20 @@ public class EnemyController : MonoBehaviour
         textMeshPro.text = name;
     }
 
+    public void UpdateBulletConfiguration()
+    {
+        UbhBaseShot[] shots = GetComponentsInChildren<UbhBaseShot>();
+        foreach(var shot in shots)
+        {
+            CustomBulletShot customShot = shot as CustomBulletShot;
+            if(customShot)
+            {
+                customShot._BetweenDelay = allBetweenDelay;
+            }
+            shot._AutoReleaseTime = allAutoReleaseTime;
+        }
+    }
+
     public void SetDisplayColor(Color color)
     {
         textMeshPro.color = color;
@@ -79,6 +87,7 @@ public class EnemyController : MonoBehaviour
 
     private void OnDeath()
     {
+        AudioManager.Instance.PlayOneShot(AudioManager.Instance.GetClipFromPlaylist("Explosion"));
         if(dieParticlePrefab)
         {
             Instantiate(dieParticlePrefab, this.gameObject.transform.position, Quaternion.identity);

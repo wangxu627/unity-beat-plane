@@ -14510,6 +14510,7 @@ GameObject:
   - component: {fileID: 3582765283134017026}
   - component: {fileID: 3582765283134017027}
   - component: {fileID: -2404882671255846550}
+  - component: {fileID: 5236807597281206905}
   m_Layer: 0
   m_Name: PlayerHit
   m_TagString: Untagged
@@ -19336,4 +19337,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69a93aa22e480e840a09a06ce5e10e5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  time: 1.2
+  time: 1
+  pooled: 1
+--- !u!114 &5236807597281206905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3582765283134017025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 715655405f7792442b10a3dc4c63ddbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolItemName: PlayerHit

@@ -130,6 +130,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   time: 2000
+  pooled: 0
 --- !u!114 &4838041236842819126
 MonoBehaviour:
   m_ObjectHideFlags: 0

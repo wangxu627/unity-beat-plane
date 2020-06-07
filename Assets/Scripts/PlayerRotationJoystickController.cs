@@ -28,19 +28,22 @@ public class PlayerRotationJoystickController : MonoBehaviour
             xInput = ETCInput.GetAxis("RightHorizontal");
 		    yInput = ETCInput.GetAxis("RightVertical");
         }
-        Debug.Log("xxxxxxx xxxxxxxxxxxxxxxxxxx: " + xInput + "   :   " + yInput + "         " + InputManager.Instance.controllerType);
         if(xInput != 0 || yInput != 0)
         {
-            Debug.Log("=================xxxxxxx : " + xInput + "   :   " + yInput);
             Rotate(xInput, yInput);
         }
     }
-
     private void Rotate(float x, float y)
     {
         Vector3 dir = new Vector3(x, -y, 0);
         dir = dir.normalized * 10;
         Quaternion toRotation = Quaternion.LookRotation(new Vector3(dir.x, dir.y, 0), Vector3.back);
         this.transform.rotation = Quaternion.Lerp(transform.rotation, toRotation, this.rotationSpeed * Time.deltaTime);
+    }
+    public void ResetRotation()
+    {
+        Vector3 dir = new Vector3(0, 1, 0);
+        dir = dir.normalized * 10;
+        this.transform.rotation = Quaternion.LookRotation(new Vector3(dir.x, dir.y, 0), Vector3.back);
     }
 }

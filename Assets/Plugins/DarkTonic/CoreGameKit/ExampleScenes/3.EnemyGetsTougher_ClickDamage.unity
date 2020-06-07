@@ -1,0 +1,1421 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!29 &1
+SceneSettings:
+  m_ObjectHideFlags: 0
+  m_PVSData: 
+  m_PVSObjectsArray: []
+  m_PVSPortalsArray: []
+  m_OcclusionBakeSettings:
+    smallestOccluder: 5
+    smallestHole: .25
+    backfaceThreshold: 100
+--- !u!104 &2
+RenderSettings:
+  m_Fog: 0
+  m_FogColor: {r: .5, g: .5, b: .5, a: 1}
+  m_FogMode: 3
+  m_FogDensity: .00999999978
+  m_LinearFogStart: 0
+  m_LinearFogEnd: 300
+  m_AmbientLight: {r: .200000003, g: .200000003, b: .200000003, a: 1}
+  m_SkyboxMaterial: {fileID: 0}
+  m_HaloStrength: .5
+  m_FlareStrength: 1
+  m_FlareFadeSpeed: 3
+  m_HaloTexture: {fileID: 0}
+  m_SpotCookie: {fileID: 0}
+  m_ObjectHideFlags: 0
+--- !u!127 &3
+LevelGameManager:
+  m_ObjectHideFlags: 0
+--- !u!157 &4
+LightmapSettings:
+  m_ObjectHideFlags: 0
+  m_LightProbes: {fileID: 0}
+  m_Lightmaps: []
+  m_LightmapsMode: 1
+  m_BakedColorSpace: 0
+  m_UseDualLightmapsInForward: 0
+  m_LightmapEditorSettings:
+    m_Resolution: 50
+    m_LastUsedResolution: 0
+    m_TextureWidth: 1024
+    m_TextureHeight: 1024
+    m_BounceBoost: 1
+    m_BounceIntensity: 1
+    m_SkyLightColor: {r: .860000014, g: .930000007, b: 1, a: 1}
+    m_SkyLightIntensity: 0
+    m_Quality: 0
+    m_Bounces: 1
+    m_FinalGatherRays: 1000
+    m_FinalGatherContrastThreshold: .0500000007
+    m_FinalGatherGradientThreshold: 0
+    m_FinalGatherInterpolationPoints: 15
+    m_AOAmount: 0
+    m_AOMaxDistance: .100000001
+    m_AOContrast: 1
+    m_LODSurfaceMappingDistance: 1
+    m_Padding: 0
+    m_TextureCompression: 0
+    m_LockAtlas: 0
+--- !u!196 &5
+NavMeshSettings:
+  m_ObjectHideFlags: 0
+  m_BuildSettings:
+    agentRadius: .5
+    agentHeight: 2
+    agentSlope: 45
+    agentClimb: .400000006
+    ledgeDropHeight: 0
+    maxJumpAcrossDistance: 0
+    accuratePlacement: 0
+    minRegionArea: 2
+    widthInaccuracy: 16.666666
+    heightInaccuracy: 10
+  m_NavMesh: {fileID: 0}
+--- !u!1 &204855017
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100022, guid: c279909b5d840094ab2f3b54a72efa4c, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 204855018}
+  - 114: {fileID: 204855019}
+  m_Layer: 0
+  m_Name: Lives
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &204855018
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400022, guid: c279909b5d840094ab2f3b54a72efa4c, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 204855017}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 958509002}
+  m_RootOrder: 5
+--- !u!114 &204855019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400020, guid: c279909b5d840094ab2f3b54a72efa4c,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 204855017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77f3611b309e62747b906d3d69945b2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isExpanded: 0
+  varType: 0
+  allowNegative: 0
+  canEndGame: 1
+  hasMaxValue: 0
+  startingValue: 3
+  endGameMinValue: 0
+  endGameMaxValue: 0
+  prospectiveValue: 0
+  intMaxValue: 100
+  startingValueFloat: 0
+  endGameMinValueFloat: 0
+  endGameMaxValueFloat: 0
+  prospectiveFloatValue: 0
+  floatMaxValue: 100
+  persistanceMode: 1
+  listenerPrefab: {fileID: 0}
+  changeMode: 2
+  fireEventsOnChange: 0
+  changeCustomEventsToFire: []
+--- !u!1 &294801088
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100002, guid: c279909b5d840094ab2f3b54a72efa4c, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 294801089}
+  m_Layer: 0
+  m_Name: Spawners
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &294801089
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400002, guid: c279909b5d840094ab2f3b54a72efa4c, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 294801088}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -79.4784012, y: 0, z: 80.0999985}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 468516305}
+  m_Father: {fileID: 856706035}
+  m_RootOrder: 1
+--- !u!1 &468516304
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100020, guid: c279909b5d840094ab2f3b54a72efa4c, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 468516305}
+  - 33: {fileID: 468516307}
+  - 23: {fileID: 468516306}
+  - 114: {fileID: 468516308}
+  m_Layer: 0
+  m_Name: EnemiesMiddle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &468516305
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400020, guid: c279909b5d840094ab2f3b54a72efa4c, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 468516304}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 103.191727, y: 0, z: -14.0200005}
+  m_LocalScale: {x: 1.22113216, y: 1.22113216, z: 1.08392751}
+  m_Children: []
+  m_Father: {fileID: 294801089}
+  m_RootOrder: 0
+--- !u!23 &468516306
+Renderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 2300000, guid: c279909b5d840094ab2f3b54a72efa4c,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 468516304}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: 8011f1b91ecda4d4a851d6dd546eb6a5, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!33 &468516307
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 3300000, guid: c279909b5d840094ab2f3b54a72efa4c,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 468516304}
+  m_Mesh: {fileID: 4300000, guid: e6783dc671dc9b64bacc7d583f4ad206, type: 3}
+--- !u!114 &468516308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400018, guid: c279909b5d840094ab2f3b54a72efa4c,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 468516304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 914220f4547e118419164d01ce96d245, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waveSpecs:
+  - isExpanded: 1
+    enableWave: 1
+    visualizeWave: 1
+    SpawnLevelNumber: 0
+    SpawnWaveNumber: 0
+    MinToSpwn:
+      variableSource: 1
+      worldVariableName: 
+      curModMode: 1
+      selfValue: 3
+      minimum: 0
+      maximum: 2147483647
+    MaxToSpwn:
+      variableSource: 1
+      worldVariableName: 
+      curModMode: 1
+      selfValue: 3
+      minimum: 0
+      maximum: 2147483647
+    WaveDelaySec:
+      variableSource: 1
+      worldVariableName: 
+      curModMode: 1
+      selfValue: 0
+      minimum: 0
+      maximum: 3.40282347e+38
+    TimeToSpawnEntireWave:
+      variableSource: 1
+      worldVariableName: 
+      curModMode: 1
+      selfValue: 1
+      minimum: 0
+      maximum: 3.40282347e+38
+    prefabToSpawn: {fileID: 400000, guid: 9bfa61d0ba2dfb9439eba31400ed8ff6, type: 2}
+    prefabToSpawnCategoryName: 
+    spawnSource: 0
+    prefabPoolIndex: 0
+    prefabPoolName: 
+    repeatWaveUntilNew: 1
+    waveCompletePercentage: 100
+    curWaveRepeatMode: 1
+    curTimedRepeatWaveMode: 0
+    repeatPauseMinimum:
+      variableSource: 1
+      worldVariableName: 
+      curModMode: 1
+      selfValue: 0
+      minimum: 0
+      maximum: 3.40282347e+38
+    repeatPauseMaximum:
+      variableSource: 1
+      worldVariableName: 
+      curModMode: 1
+      selfValue: 0
+      minimum: 0
+      maximum: 3.40282347e+38
+    repeatItemInc:
+      variableSource: 1
+      worldVariableName: 
+      curModMode: 1
+      selfValue: 0
+      minimum: -100
+      maximum: 100
+    repeatItemMinLmt:
+      variableSource: 1
+      worldVariableName: 
+      curModMode: 1
+      selfValue: 1
+      minimum: 0
+      maximum: 2147483647
+    repeatItemLmt:
+      variableSource: 1
+      worldVariableName: 
+      curModMode: 1
+      selfValue: 100
+      minimum: 0
+      maximum: 1000
+    resetOnItemLimitReached: 0
+    repeatTimeInc:
+      variableSource: 1
+      worldVariableName: 
+      curModMode: 1
+      selfValue: 0
+      minimum: -3.40282347e+38
+      maximum: 3.40282347e+38
+    repeatTimeMinLmt:
+      variableSource: 1
+      worldVariableName: 
+      curModMode: 1
+      selfValue: 1
+      minimum: 0
+      maximum: 3.40282347e+38
+    repeatTimeLmt:
+      variableSource: 1
+      worldVariableName: 
+      curModMode: 1
+      selfValue: 100
+      minimum: .100000001
+      maximum: 3.40282347e+38
+    resetOnTimeLimitReached: 0
+    repetitionsToDo:
+      variableSource: 1
+      worldVariableName: 
+      curModMode: 1
+      selfValue: 2
+      minimum: 2
+      maximum: 2147483647
+    repeatPassCriteria:
+      scenarioName: CONDITION_NAME
+      statMods: []
+    waveRepeatBonusesEnabled: 1
+    waveRepeatVariableModifiers:
+      scenarioName: CONDITION_NAME
+      statMods:
+      - _statName: Enemy Toughness
+        _modValueIntAmt:
+          variableSource: 1
+          worldVariableName: 
+          curModMode: 1
+          selfValue: 1
+          minimum: -2147483648
+          maximum: 2147483647
+        _modValueFloatAmt:
+          variableSource: 1
+          worldVariableName: 
+          curModMode: 1
+          selfValue: 0
+          minimum: -3.40282347e+38
+          maximum: 3.40282347e+38
+        _varTypeToUse: 0
+    waveRepeatFireEvents: 0
+    waveRepeatCustomEvents: []
+    positionExpanded: 1
+    positionXmode: 0
+    positionYmode: 0
+    positionZmode: 0
+    customPosX:
+      variableSource: 1
+      worldVariableName: 
+      curModMode: 1
+      selfValue: 0
+      minimum: -2147483650
+      maximum: 2147483650
+    customPosY:
+      variableSource: 1
+      worldVariableName: 
+      curModMode: 1
+      selfValue: 0
+      minimum: -2147483650
+      maximum: 2147483650
+    customPosZ:
+      variableSource: 1
+      worldVariableName: 
+      curModMode: 1
+      selfValue: 0
+      minimum: -2147483650
+      maximum: 2147483650
+    otherObjectX: {fileID: 0}
+    otherObjectY: {fileID: 0}
+    otherObjectZ: {fileID: 0}
+    curRotationMode: 0
+    customRotation: {x: 0, y: 0, z: 0}
+    enableLimits: 0
+    doNotSpawnIfMbrCloserThan:
+      variableSource: 1
+      worldVariableName: 
+      curModMode: 1
+      selfValue: 5
+      minimum: .100000001
+      maximum: 3.40282347e+38
+    doNotSpawnRandomDist:
+      variableSource: 1
+      worldVariableName: 
+      curModMode: 1
+      selfValue: 0
+      minimum: .100000001
+      maximum: 3.40282347e+38
+    enableRandomizations: 0
+    randomXRotation: 0
+    randomYRotation: 0
+    randomZRotation: 0
+    randomDistX:
+      variableSource: 1
+      worldVariableName: 
+      curModMode: 1
+      selfValue: 0
+      minimum: 0
+      maximum: 5000
+    randomDistY:
+      variableSource: 1
+      worldVariableName: 
+      curModMode: 1
+      selfValue: 0
+      minimum: 0
+      maximum: 5000
+    randomDistZ:
+      variableSource: 1
+      worldVariableName: 
+      curModMode: 1
+      selfValue: 0
+      minimum: 0
+      maximum: 5000
+    randomXRotMin:
+      variableSource: 1
+      worldVariableName: 
+      curModMode: 1
+      selfValue: 0
+      minimum: 0
+      maximum: 360
+    randomXRotMax:
+      variableSource: 1
+      worldVariableName: 
+      curModMode: 1
+      selfValue: 360
+      minimum: 0
+      maximum: 360
+    randomYRotMin:
+      variableSource: 1
+      worldVariableName: 
+      curModMode: 1
+      selfValue: 0
+      minimum: 0
+      maximum: 360
+    randomYRotMax:
+      variableSource: 1
+      worldVariableName: 
+      curModMode: 1
+      selfValue: 360
+      minimum: 0
+      maximum: 360
+    randomZRotMin:
+      variableSource: 1
+      worldVariableName: 
+      curModMode: 1
+      selfValue: 0
+      minimum: 0
+      maximum: 360
+    randomZRotMax:
+      variableSource: 1
+      worldVariableName: 
+      curModMode: 1
+      selfValue: 360
+      minimum: 0
+      maximum: 360
+    enableIncrements: 1
+    enableKeepCenter: 0
+    incrementPositionX:
+      variableSource: 1
+      worldVariableName: 
+      curModMode: 1
+      selfValue: 15
+      minimum: -3.40282347e+38
+      maximum: 3.40282347e+38
+    incrementPositionY:
+      variableSource: 1
+      worldVariableName: 
+      curModMode: 1
+      selfValue: 0
+      minimum: -3.40282347e+38
+      maximum: 3.40282347e+38
+    incrementPositionZ:
+      variableSource: 1
+      worldVariableName: 
+      curModMode: 1
+      selfValue: 0
+      minimum: -3.40282347e+38
+      maximum: 3.40282347e+38
+    incrementRotX:
+      variableSource: 1
+      worldVariableName: 
+      curModMode: 1
+      selfValue: 0
+      minimum: -180
+      maximum: 180
+    incrementRotY:
+      variableSource: 1
+      worldVariableName: 
+      curModMode: 1
+      selfValue: 0
+      minimum: -180
+      maximum: 180
+    incrementRotZ:
+      variableSource: 1
+      worldVariableName: 
+      curModMode: 1
+      selfValue: 0
+      minimum: -180
+      maximum: 180
+    offsetChoiceMode: 0
+    waveOffsetList: []
+    enablePostSpawnNudge: 0
+    postSpawnNudgeFwd:
+      variableSource: 1
+      worldVariableName: 
+      curModMode: 1
+      selfValue: 0
+      minimum: -3.40282347e+38
+      maximum: 3.40282347e+38
+    postSpawnNudgeRgt:
+      variableSource: 1
+      worldVariableName: 
+      curModMode: 1
+      selfValue: 0
+      minimum: -3.40282347e+38
+      maximum: 3.40282347e+38
+    postSpawnNudgeDwn:
+      variableSource: 1
+      worldVariableName: 
+      curModMode: 1
+      selfValue: 0
+      minimum: -3.40282347e+38
+      maximum: 3.40282347e+38
+  isExpanded: 1
+  activeMode: 0
+  activeItemCriteria:
+    statMods:
+    - _modValueIntMin: 0
+      _modValueIntMax: 0
+      _modValueFloatMin: 0
+      _modValueFloatMax: 0
+      _statName: Game Currency
+      _varTypeToUse: 0
+  randomSortKey: 0
+  spawnOutsidePool: 0
+  gameOverBehavior: 1
+  wavePauseBehavior: 1
+  listener: {fileID: 0}
+  spawnLayerMode: 0
+  spawnTagMode: 0
+  spawnCustomLayer: 0
+  applyLayerRecursively: 0
+  spawnCustomTag: Untagged
+  useLevelFilter: 0
+  levelFilter: 0
+--- !u!1 &856706034
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100000, guid: c279909b5d840094ab2f3b54a72efa4c, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 856706035}
+  - 114: {fileID: 856706036}
+  m_Layer: 0
+  m_Name: LevelWaveSettings
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &856706035
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400000, guid: c279909b5d840094ab2f3b54a72efa4c, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 856706034}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 928328733}
+  - {fileID: 294801089}
+  - {fileID: 958509002}
+  - {fileID: 1905238760}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &856706036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400000, guid: c279909b5d840094ab2f3b54a72efa4c,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 856706034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc2c4a14aa6287b42a5c71d774cb2174, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useMusicSettings: 0
+  showLevelSettings: 1
+  showCustomEvents: 1
+  gameStatsExpanded: 1
+  newEventName: my event
+  listener: {fileID: 0}
+  RedSpawnerTrans: {fileID: 400000, guid: a55a4529e623189409cc61a63c6364f6, type: 2}
+  GreenSpawnerTrans: {fileID: 400000, guid: e121bde1411b84240bc764138546b3b7, type: 2}
+  PrefabPoolTrans: {fileID: 400000, guid: 9851599e1296c6a46a6bdd48b6ce09d4, type: 2}
+  newSpawnerName: WildCard
+  newPrefabPoolExpanded: 1
+  newPrefabPoolName: MixedEnemies
+  newSpawnerType: 0
+  gameOverMusicSettings:
+    WaveMusicMode: 2
+    WaveMusic: {fileID: 0}
+    WaveMusicVolume: 1
+    FadeTime: 2
+  spawnersExpanded: 1
+  createSpawnerExpanded: 1
+  createPrefabPoolsExpanded: 0
+  killerPoolingExpanded: 1
+  disableSyncroSpawners: 0
+  startFirstWaveImmediately: 1
+  waveRestartMode: 0
+  enableWaveWarp: 0
+  startLevelNumber:
+    variableSource: 1
+    worldVariableName: 
+    curModMode: 1
+    selfValue: 1
+    minimum: 1
+    maximum: 2147483647
+  startWaveNumber:
+    variableSource: 1
+    worldVariableName: 
+    curModMode: 1
+    selfValue: 1
+    minimum: 1
+    maximum: 2147483647
+  persistBetweenScenes: 0
+  isLoggingOn: 0
+  LevelTimes:
+  - levelName: UNNAMED
+    waveOrder: 0
+    WaveSettings:
+    - waveType: 0
+      skipWaveType: 1
+      skipWavePassCriteria:
+        scenarioName: 
+        statMods: []
+      pauseGlobalWavesWhenCompleted: 0
+      waveName: UNNAMED
+      waveClass: None
+      waveDescription: Your wave description goes here.
+      musicSettings:
+        WaveMusicMode: 1
+        WaveMusic: {fileID: 8300000, guid: 33d970c633a0a0a448be6fdb1306bfd8, type: 3}
+        WaveMusicVolume: 1
+        FadeTime: 2
+      WaveDuration: 1990
+      waveDurationFlex:
+        variableSource: 1
+        worldVariableName: 
+        curModMode: 1
+        selfValue: 1990
+        minimum: 0
+        maximum: 5000
+      endEarlyIfAllDestroyed: 0
+      waveBeatBonusesEnabled: 1
+      useCompletionEvents: 0
+      useSpawnBonusPrefab: 0
+      bonusPrefabSource: 0
+      bonusPrefabPoolIndex: 0
+      bonusPrefabPoolName: 
+      bonusPrefabSpecific: {fileID: 0}
+      bonusPrefabSpawnPercent:
+        variableSource: 1
+        worldVariableName: 
+        curModMode: 1
+        selfValue: 100
+        minimum: 0
+        maximum: 100
+      bonusPrefabQty:
+        variableSource: 1
+        worldVariableName: 
+        curModMode: 1
+        selfValue: 1
+        minimum: 0
+        maximum: 100
+      bonusPrefabCategoryName: 
+      spawnerUseMode: 0
+      spawnersToUseMin: 1
+      spawnersToUseMax: 1
+      isDummyWave: 0
+      completionCustomEvents: []
+      waveDefeatVariableModifiers:
+        scenarioName: 
+        statMods:
+        - _statName: Experience Points
+          _modValueIntAmt:
+            variableSource: 1
+            worldVariableName: 
+            curModMode: 1
+            selfValue: 5000
+            minimum: -2147483648
+            maximum: 2147483647
+          _modValueFloatAmt:
+            variableSource: 1
+            worldVariableName: 
+            curModMode: 1
+            selfValue: 0
+            minimum: -3.40282347e+38
+            maximum: 3.40282347e+38
+          _varTypeToUse: 0
+      isExpanded: 0
+      sequencedWaveNumber: 0
+      randomWaveNumber: 0
+    isExpanded: 1
+  useWaves: 1
+  showCustomWaveClasses: 0
+  customWaveClasses: []
+  repeatLevelMode: 0
+  customEvents: []
+  customEventCategories:
+  - CatName: '[Uncategorized]'
+    IsExpanded: 1
+    IsEditing: 0
+    IsTemporary: 0
+    ProspectiveName: '[Uncategorized]'
+  newCustomEventCategoryName: New Category
+  addToCustomEventCategoryName: New Category
+  initializationSettingsExpanded: 0
+  initializationCustomEvents: []
+  waveDurationsCopied: 1
+  _frames: 842
+--- !u!1 &874550491
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100014, guid: c279909b5d840094ab2f3b54a72efa4c, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 874550492}
+  - 114: {fileID: 874550493}
+  m_Layer: 0
+  m_Name: Health
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &874550492
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400014, guid: c279909b5d840094ab2f3b54a72efa4c, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 874550491}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 958509002}
+  m_RootOrder: 1
+--- !u!114 &874550493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400012, guid: c279909b5d840094ab2f3b54a72efa4c,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 874550491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77f3611b309e62747b906d3d69945b2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isExpanded: 0
+  varType: 0
+  allowNegative: 0
+  canEndGame: 0
+  hasMaxValue: 0
+  startingValue: 101
+  endGameMinValue: 0
+  endGameMaxValue: 0
+  prospectiveValue: 0
+  intMaxValue: 100
+  startingValueFloat: 0
+  endGameMinValueFloat: 0
+  endGameMaxValueFloat: 0
+  prospectiveFloatValue: 0
+  floatMaxValue: 100
+  persistanceMode: 0
+  listenerPrefab: {fileID: 0}
+  changeMode: 2
+  fireEventsOnChange: 0
+  changeCustomEventsToFire: []
+--- !u!1 &928328732
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100016, guid: c279909b5d840094ab2f3b54a72efa4c, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 928328733}
+  - 114: {fileID: 928328734}
+  m_Layer: 0
+  m_Name: PoolBoss
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &928328733
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400016, guid: c279909b5d840094ab2f3b54a72efa4c, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 928328732}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 856706035}
+  m_RootOrder: 0
+--- !u!114 &928328734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400014, guid: c279909b5d840094ab2f3b54a72efa4c,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 928328732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dd2ab4313364af4ab376f1dbc8fd03e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  poolItems:
+  - prefabTransform: {fileID: 400000, guid: 9bfa61d0ba2dfb9439eba31400ed8ff6, type: 2}
+    instancesToPreload: 3
+    isExpanded: 0
+    logMessages: 0
+    allowInstantiateMore: 0
+    enableNavMeshAgentOnSpawn: 0
+    itemHardLimit: 10
+    allowRecycle: 0
+    categoryName: '[Uncategorized]'
+  - prefabTransform: {fileID: 400000, guid: 72e6f4050c047b24b8daf5f55fefae0c, type: 2}
+    instancesToPreload: 10
+    isExpanded: 1
+    logMessages: 0
+    allowInstantiateMore: 1
+    enableNavMeshAgentOnSpawn: 0
+    itemHardLimit: 15
+    allowRecycle: 0
+    categoryName: '[Uncategorized]'
+  logMessages: 0
+  useTextFilter: 0
+  showLegend: 1
+  textFilter: 
+  autoAddMissingPoolItems: 0
+  allowDespawningInactive: 0
+  newCategoryName: New Category
+  addToCategoryName: New Category
+  framesForInit: 1
+  listener: {fileID: 0}
+  _changes: 0
+  _categories:
+  - CatName: '[Uncategorized]'
+    IsExpanded: 1
+    IsEditing: 0
+    ProspectiveName: '[Uncategorized]'
+  IsPhotonNetworked: 0
+--- !u!1 &958509001
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100006, guid: c279909b5d840094ab2f3b54a72efa4c, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 958509002}
+  - 114: {fileID: 958509003}
+  m_Layer: 0
+  m_Name: WorldVariables
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &958509002
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400006, guid: c279909b5d840094ab2f3b54a72efa4c, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 958509001}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1554121793}
+  - {fileID: 874550492}
+  - {fileID: 1102667848}
+  - {fileID: 1321584410}
+  - {fileID: 1670996036}
+  - {fileID: 204855018}
+  m_Father: {fileID: 856706035}
+  m_RootOrder: 2
+--- !u!114 &958509003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400004, guid: c279909b5d840094ab2f3b54a72efa4c,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 958509001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9effea21b0e353148a46437f7c762ba1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statPrefab: {fileID: 400000, guid: 92cc514738e77714ea457996d5e41318, type: 2}
+  newVariableName: Enemy Toughness
+  showNewVarSection: 1
+  newVarType: 0
+  worldVariablesExpanded: 1
+  showIntVars: 1
+  showFloatVars: 1
+  frames: 0
+--- !u!1 &1102667847
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100008, guid: c279909b5d840094ab2f3b54a72efa4c, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1102667848}
+  - 114: {fileID: 1102667849}
+  m_Layer: 0
+  m_Name: Game Currency
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1102667848
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400008, guid: c279909b5d840094ab2f3b54a72efa4c, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1102667847}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 958509002}
+  m_RootOrder: 2
+--- !u!114 &1102667849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400006, guid: c279909b5d840094ab2f3b54a72efa4c,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1102667847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77f3611b309e62747b906d3d69945b2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isExpanded: 0
+  varType: 0
+  allowNegative: 0
+  canEndGame: 0
+  hasMaxValue: 0
+  startingValue: 0
+  endGameMinValue: 0
+  endGameMaxValue: 0
+  prospectiveValue: 0
+  intMaxValue: 100
+  startingValueFloat: 0
+  endGameMinValueFloat: 0
+  endGameMaxValueFloat: 0
+  prospectiveFloatValue: 0
+  floatMaxValue: 100
+  persistanceMode: 1
+  listenerPrefab: {fileID: 0}
+  changeMode: 2
+  fireEventsOnChange: 0
+  changeCustomEventsToFire: []
+--- !u!1 &1128263558
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1128263559}
+  - 20: {fileID: 1128263560}
+  - 92: {fileID: 1128263562}
+  - 124: {fileID: 1128263563}
+  - 81: {fileID: 1128263561}
+  - 82: {fileID: 1128263565}
+  - 114: {fileID: 1128263564}
+  m_Layer: 0
+  m_Name: Main Camera
+  m_TagString: MainCamera
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1128263559
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1128263558}
+  m_LocalRotation: {x: .707106829, y: 0, z: 0, w: .707106829}
+  m_LocalPosition: {x: 30.8020706, y: 716.080688, z: -4.53753662}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+--- !u!20 &1128263560
+Camera:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1128263558}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: .300000012
+  far clip plane: 1000
+  field of view: 8
+  orthographic: 1
+  orthographic size: 93.1299973
+  m_Depth: -1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_HDR: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: .0219999999
+--- !u!81 &1128263561
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1128263558}
+  m_Enabled: 1
+--- !u!92 &1128263562
+Behaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1128263558}
+  m_Enabled: 1
+--- !u!124 &1128263563
+Behaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1128263558}
+  m_Enabled: 1
+--- !u!114 &1128263564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1128263558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0a57dfb6d21afe43809698039e50616, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!82 &1128263565
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1128263558}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+--- !u!1 &1221602467
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1221602468}
+  - 114: {fileID: 1221602469}
+  m_Layer: 0
+  m_Name: PlayerSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1221602468
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1221602467}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 26.3799992, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+--- !u!114 &1221602469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1221602467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 014b3d8f7440fe24783e7cd3f6b5bedd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerPrefab: {fileID: 400000, guid: bb5a3767a483b8740a450e7c3c621eae, type: 2}
+  RespawnParticlePrefab: {fileID: 0}
+  RespawnParticleOffset: {x: 0, y: 0, z: 20}
+  RespawnDelay: 1
+  spawnPosition: {x: 26.3799992, y: 0, z: -80}
+  followPlayer: 0
+--- !u!1 &1321584409
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100012, guid: c279909b5d840094ab2f3b54a72efa4c, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1321584410}
+  - 114: {fileID: 1321584411}
+  m_Layer: 0
+  m_Name: Experience Points
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1321584410
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400012, guid: c279909b5d840094ab2f3b54a72efa4c, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1321584409}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 958509002}
+  m_RootOrder: 3
+--- !u!114 &1321584411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400010, guid: c279909b5d840094ab2f3b54a72efa4c,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1321584409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77f3611b309e62747b906d3d69945b2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isExpanded: 0
+  varType: 0
+  allowNegative: 0
+  canEndGame: 0
+  hasMaxValue: 0
+  startingValue: 0
+  endGameMinValue: 0
+  endGameMaxValue: 0
+  prospectiveValue: 0
+  intMaxValue: 100
+  startingValueFloat: 0
+  endGameMinValueFloat: 0
+  endGameMaxValueFloat: 0
+  prospectiveFloatValue: 0
+  floatMaxValue: 100
+  persistanceMode: 0
+  listenerPrefab: {fileID: 0}
+  changeMode: 2
+  fireEventsOnChange: 0
+  changeCustomEventsToFire: []
+--- !u!1 &1554121792
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1554121793}
+  - 114: {fileID: 1554121794}
+  m_Layer: 0
+  m_Name: Enemy Toughness
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1554121793
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1554121792}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 958509002}
+  m_RootOrder: 0
+--- !u!114 &1554121794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1554121792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77f3611b309e62747b906d3d69945b2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isExpanded: 1
+  varType: 0
+  allowNegative: 0
+  canEndGame: 0
+  hasMaxValue: 0
+  startingValue: 1
+  endGameMinValue: 0
+  endGameMaxValue: 0
+  prospectiveValue: 0
+  intMaxValue: 100
+  startingValueFloat: 0
+  endGameMinValueFloat: 0
+  endGameMaxValueFloat: 0
+  prospectiveFloatValue: 0
+  floatMaxValue: 100
+  persistanceMode: 0
+  listenerPrefab: {fileID: 0}
+  changeMode: 2
+  fireEventsOnChange: 0
+  changeCustomEventsToFire: []
+--- !u!1 &1670996035
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100010, guid: c279909b5d840094ab2f3b54a72efa4c, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1670996036}
+  - 114: {fileID: 1670996037}
+  m_Layer: 0
+  m_Name: Score
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1670996036
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400010, guid: c279909b5d840094ab2f3b54a72efa4c, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1670996035}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 958509002}
+  m_RootOrder: 4
+--- !u!114 &1670996037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400008, guid: c279909b5d840094ab2f3b54a72efa4c,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1670996035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77f3611b309e62747b906d3d69945b2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isExpanded: 1
+  varType: 0
+  allowNegative: 0
+  canEndGame: 0
+  hasMaxValue: 0
+  startingValue: 0
+  endGameMinValue: -2000
+  endGameMaxValue: 0
+  prospectiveValue: 0
+  intMaxValue: 100
+  startingValueFloat: 0
+  endGameMinValueFloat: 0
+  endGameMaxValueFloat: 0
+  prospectiveFloatValue: 0
+  floatMaxValue: 100
+  persistanceMode: 0
+  listenerPrefab: {fileID: 0}
+  changeMode: 2
+  fireEventsOnChange: 0
+  changeCustomEventsToFire: []
+--- !u!1 &1905238759
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100004, guid: c279909b5d840094ab2f3b54a72efa4c, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1905238760}
+  - 114: {fileID: 1905238761}
+  m_Layer: 0
+  m_Name: PrefabPools
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1905238760
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400004, guid: c279909b5d840094ab2f3b54a72efa4c, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1905238759}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 856706035}
+  m_RootOrder: 3
+--- !u!114 &1905238761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400002, guid: c279909b5d840094ab2f3b54a72efa4c,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1905238759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddf9e23fc24e8de4fa02ad4e8dec2b1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newPrefabPoolExpanded: 1
+  newPrefabPoolName: EnemiesPool

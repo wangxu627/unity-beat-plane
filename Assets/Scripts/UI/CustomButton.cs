@@ -11,17 +11,22 @@ public class CustomButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     public TextMeshProUGUI text;
     private bool followTint = false;
     private ColorBlock colors;
+    private Button button;
     void Start()
     {
-        Button btn = GetComponent<Button>();
-        if(btn.transition == Selectable.Transition.ColorTint)
+        button = GetComponent<Button>();
+        if(button.transition == Selectable.Transition.ColorTint)
         {
             followTint = true;
-            colors = btn.colors;
+            colors = button.colors;
         }
     }
     public void OnPointerDown(PointerEventData pointerEventData)
     {
+        if(!button.interactable)
+        {
+            return;
+        }
         if(followTint)
         {
             text.color = colors.pressedColor;
@@ -29,9 +34,29 @@ public class CustomButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     }
     public void OnPointerUp(PointerEventData pointerEventData)
     {
+        if(!button.interactable)
+        {
+            return;
+        }
         if(followTint)
         {
             text.color = colors.normalColor;
+        }
+    }
+
+    public void UpdateState()
+    {
+        if(!button)
+        {
+            return;
+        }
+        if(button.interactable)
+        {
+            text.color = colors.normalColor;
+        }
+        else
+        {
+            text.color = colors.disabledColor;
         }
     }
 }

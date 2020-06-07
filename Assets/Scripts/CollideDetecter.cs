@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DarkTonic.CoreGameKit;
 
 public class CollideDetecter : MonoBehaviour
 {
@@ -38,15 +39,15 @@ public class CollideDetecter : MonoBehaviour
         if(other.tag == "PlayerBullet")
         {
             GameObject realGameObject = other.gameObject.transform.parent.gameObject;
-            Destroy(realGameObject);
-
+            PoolBoss.Despawn(realGameObject.transform);
+            // Destroy(realGameObject);
             GetComponent<Health>()?.Damage(1, 0);
         }
         else if(other.tag == "Player")
         {
             other.gameObject.GetComponent<Health>()?.Damage(1, 0);
         }
-        this.gameObject.GetComponent<HitEffectController>().PlayHit();
+        this.gameObject.GetComponent<HitEffectController>().PlayHit(other.gameObject.transform.position);
         if(textShakeController) 
         {
             textShakeController.Shake();
@@ -59,7 +60,7 @@ public class CollideDetecter : MonoBehaviour
         if (other.tag == "PlayerBullet")
         {
             GameObject realGameObject = other.gameObject.transform.parent.gameObject;
-            Destroy(realGameObject);
+            PoolBoss.Despawn(realGameObject.transform);
         }
         else if(other.tag == "Player")
         {
@@ -84,6 +85,9 @@ public class CollideDetecter : MonoBehaviour
     private void RemoveSelf()
     {
         this.gameObject.GetComponent<HitEffectController>().PlayHit();
-        Destroy(this.gameObject);
+        // Destroy(this.gameObject);
+        // PoolBoss.Despawn(this.gameObject.transform);
+        this.gameObject.SetActive(false);
+
     }
 }
